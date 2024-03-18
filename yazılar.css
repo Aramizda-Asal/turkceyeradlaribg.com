@@ -1,4 +1,11 @@
 .Yazı1
 {
+    text-align: center;
+    color: black;
+    font-size: medium;
+}
 
+.yazılar-girişyap
+{
+    text-align: left;
 }
