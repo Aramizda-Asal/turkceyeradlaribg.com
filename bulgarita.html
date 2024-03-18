@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="kutularvedüğmeler.css"/>
 
         <script src="JavaScript/sayfa.js"></script>
+        <script src="JavaScript/Kayit.js"></script>
     </head>
 
     <body style="margin: 0; padding: 0;">
@@ -30,6 +31,22 @@
                     <label for="parola" class="yazılar-girişyap">Parola:</label><br>
                     <input type="text" id="parola">
                     <input type="submit" value="Giriş Yap">
+                </form>
+            </div>
+
+            <div>
+                <h4 class="Başlık2">Başlık</h4>
+                <p class="Yazı1">Bilgiler</p>
+                <form class="kutular-kayitol">
+                    <label for="kullanıcıb" class="yazılar-kayitol">Kullanıcı Adı:</label><br>
+                    <input type="text" id="kullanıcıb"><br>
+                    <label for="epostab" class="yazılar-kayitol">E-Posta:</label><br>
+                    <input type="text" id="epostab"><br>
+                    <label for="parolab" class="yazılar-kayitol">Parola:</label><br>
+                    <input type="text" id="parolab"><br>
+                    <label for="parolac" class="yazılar-kayitol">Parola Tekrar:</label><br>
+                    <input type="text" id="parolac"><br><br>
+                    <input type="button" value="Kayit Ol" onclick="KayitOl()"></button>
                 </form>
             </div>
         </div>
