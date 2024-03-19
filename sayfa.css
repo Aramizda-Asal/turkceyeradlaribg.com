@@ -1,13 +1,30 @@
-.sayfa-başlığı {
+.sayfa-başlığı
+{
     height: 10vh;
     width: 100vw;
     margin: none;
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 50;
     
     background-color: #ffff0055;
+}
+.başlık-giriş
+{
+    display: block;
+    width: 17%;
+    height: 100%;
+    float: right;
+    text-align: center;
+}
+.giriş-düğmesi
+{
+    display: block;
+    width: 7vh;
+    height: 7vh;
+    border-radius: 50%;
+    margin: 1.5vh auto;
 }
 
 .sayfa-gövdesi

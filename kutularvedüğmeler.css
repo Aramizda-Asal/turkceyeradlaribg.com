@@ -2,3 +2,22 @@
 {
     text-align: center;
 }
+
+.D1-turkuaz
+{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    background-color: #40e0d0; /*Turkuaz*/
+    color: #072c28;
+    border: 3px solid #40e0d0;
+    border-radius: 10px;
+    padding: 0.2em 0.6em;
+    cursor: pointer;
+}
+.D1-turkuaz:hover
+{
+    background-color: #bdf4ef;
+    border-color: #bdf4ef;
+    color: #158479;
+}
