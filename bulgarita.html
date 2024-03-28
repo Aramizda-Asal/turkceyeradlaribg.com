@@ -27,7 +27,7 @@
 
         <div id="kullanıcı-çekmecesi" class="kullanıcı-çekmece"> 
             <div class="çekmece-içi">
-            <div>
+            <div id="giriş-yap">
                 <h4 class="Başlık2">Başlık</h4>
                 <p class="Yazı1">Bilgiler</p>
 
@@ -36,11 +36,12 @@
                     <input type="text" id="kullanıcıadı-giriş"><br>
                     <label for="parola-giriş" class="yazılar-girişyap">Parola:</label><br>
                     <input type="password" id="parola-giriş"><br><br>
-                    <input type="button" value="Giriş Yap" onclick="GirişYap()"></button>
+                    <input type="button" class="D1-turkuaz" id="düğme-girişyap" value="Giriş Yap" onclick="GirişYap()"/>
+                    <input type="button" class="D2-beyaz" id="düğme-diğer-girişyap" value="Kayıt Ol" onclick="Göster_KayıtOl()"/>
                 </form>
             </div>
 
-            <div>
+            <div id="kayıt-ol">
                 <h4 class="Başlık2">Başlık</h4>
                 <p class="Yazı1">Bilgiler</p>
                 <form class="kutular-kayitol">
@@ -52,7 +53,8 @@
                     <input type="password" id="parola-kayıt"><br>
                     <label for="parola-kayıt-tekrar" class="yazılar-kayitol">Parola Tekrar:</label><br>
                     <input type="password" id="parola-kayıt-tekrar"><br><br>
-                    <input type="button" value="Kayit Ol" onclick="KayitOl()"></button>
+                    <input type="button" class="D1-turkuaz" id="düğme-kayıtol" value="Kayıt Ol" onclick="KayitOl()"/>
+                    <input type="button" class="D2-beyaz" id="düğme-diğer-girişyap" value="Giriş Yap" onclick="Göster_GirişYap()"/>
                 </form>
             </div>
             </div>

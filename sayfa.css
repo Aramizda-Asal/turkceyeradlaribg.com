@@ -90,3 +90,8 @@ body
         width: 25vw;
     }
 }
+
+#kayıt-ol
+{
+    display: none;
+}

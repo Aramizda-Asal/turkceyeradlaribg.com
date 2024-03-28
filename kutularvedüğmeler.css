@@ -18,10 +18,30 @@
     border-radius: 10px;
     padding: 0.2em 0.6em;
     cursor: pointer;
+    display: block;
 }
 .D1-turkuaz:hover
 {
     background-color: #bdf4ef;
     border-color: #bdf4ef;
     color: #158479;
+}
+
+.D2-beyaz
+{
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    background-color: azure;
+    color: #158479;
+    border: 3px solid azure;
+    border-radius: 9px;
+    padding: 0.2em 0.6em;
+    cursor: pointer;
+    display: block;
+}
+
+#kullanıcı-çekmecesi input
+{
+    margin: 0% auto 4%;
 }
