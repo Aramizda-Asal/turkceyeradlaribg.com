@@ -1,3 +1,8 @@
+body
+{
+    overflow: hidden;
+}
+
 .sayfa-başlığı
 {
     height: 10vh;
@@ -41,14 +46,17 @@
 .kullanıcı-çekmece
 {
     height: 100vh;
-    width: 0; /*açılınca 25vw*/
+    width: 100vw;
     position: fixed;
     top: 0;
-    right: 0;
+    right: auto;
+    left: 100%;
     z-index: 51;
     border-radius: 2px;
     background-color: rgb(146, 10, 225);
     transition: 750ms;
+    transform-origin: 100% 0 0;
+    transform: none;
 }
 
 #kapatıcı
@@ -61,4 +69,13 @@
     background: none;
     z-index: 45;
     display: none;
+    cursor: crosshair;
+}
+
+@media (orientation:landscape)
+{
+    .kullanıcı-çekmece
+    {
+        width: 25vw;
+    }
 }

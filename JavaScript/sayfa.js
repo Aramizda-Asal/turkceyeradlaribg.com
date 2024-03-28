@@ -2,23 +2,33 @@ let kullanıcı_çekmecesi_açık = false;
 
 function KullanıcıÇekmecesi()
 {
-    if(kullanıcı_çekmecesi_açık === true) // kapat
+    if(kullanıcı_çekmecesi_açık) // kapat
     {
-        document.getElementById("kullanıcı-çekmecesi").style.width = "0";
-        document.getElementById("kapatıcı").style.display = "none"
-        kullanıcı_çekmecesi_açık = false;
+        KullanıcıÇekmecesiniKapat();
     }
     else // aç
     {
-        if (visualViewport.height <= visualViewport.width)
-        {
-            document.getElementById("kullanıcı-çekmecesi").style.width = "25vw";
-        }
-        else
-        {
-            document.getElementById("kullanıcı-çekmecesi").style.width = "100vw";
-        }
-        document.getElementById("kapatıcı").style.display = "block";
-        kullanıcı_çekmecesi_açık = true;
+        KullanıcıÇekmecesiniAç();
     }
+}
+function KullanıcıÇekmecesiniAç()
+{
+    let çekmece = document.getElementById("kullanıcı-çekmecesi");
+    if (visualViewport.height > visualViewport.width)
+    {
+        çekmece.style.transform = "translate(-100vw,0)";
+    }
+    else
+    {
+        çekmece.style.transform = "translate(-25vw,0)";
+    }
+    
+    document.getElementById("kapatıcı").style.display = "block";
+    kullanıcı_çekmecesi_açık = true;
+}
+function KullanıcıÇekmecesiniKapat()
+{
+    document.getElementById("kullanıcı-çekmecesi").style.transform = "none";
+    document.getElementById("kapatıcı").style.display = "none";
+    kullanıcı_çekmecesi_açık = false;
 }
