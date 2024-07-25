@@ -13,3 +13,9 @@ function KullanıcıÇekmecesi()
         kullanıcı_çekmecesi_açık = true;
     }
 }
+
+function AyarlaraGit()
+{
+    document.getElementById("kullanıcı-çekmece-ayarlar").style.display = "block"
+    document.getElementById("kullanıcı-çekmece-profil").style.display = "none"
+}
