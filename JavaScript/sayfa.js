@@ -33,6 +33,41 @@ function KullanıcıÇekmecesiniKapat()
     kullanıcı_çekmecesi_açık = false;
 }
 
+let nokta_çekmecesi_açık = false;
+
+function NoktaÇekmecesi()
+{
+    if(nokta_çekmecesi_açık) // kapat
+    {
+        NoktaÇekmecesiniKapat();
+    }
+    else // aç
+    {
+        NoktaÇekmecesiniAç();
+    }
+}
+function NoktaÇekmecesiniAç()
+{
+    let çekmece = document.getElementById("nokta-çekmecesi");
+    if (visualViewport.height > visualViewport.width)
+    {
+        çekmece.style.transform = "translate(+100vw,0)";
+    }
+    else
+    {
+        çekmece.style.transform = "translate(+25vw,0)";
+    }
+    
+    document.getElementById("kapatıcı").style.display = "block";
+    nokta_çekmecesi_açık = true;
+}
+function NoktaÇekmecesiniKapat()
+{
+    document.getElementById("nokta-çekmecesi").style.transform = "none";
+    document.getElementById("kapatıcı").style.display = "none";
+    nokta_çekmecesi_açık = false;
+}
+
 function Göster_KayıtOl()
 {
     document.getElementById("giriş-yap").style.display = "none";

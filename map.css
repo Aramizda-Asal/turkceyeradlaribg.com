@@ -1,0 +1,13 @@
+.leaflet-tooltip.nokta-label
+{
+    background-color: transparent;
+    border: transparent;
+    box-shadow: none;
+    padding-right: 37px;
+    font-size: medium;
+}
+
+.leaflet-tooltip-top:before
+{
+    visibility: hidden;
+}

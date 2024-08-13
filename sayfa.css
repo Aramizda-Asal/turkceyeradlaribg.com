@@ -59,6 +59,22 @@ body
     transform: none;
 }
 
+.nokta-çekmece
+{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    right: auto;
+    right: 100%;
+    z-index: 51;
+    /*border-radius: 2px;*/
+    /*background-color: rgb(146, 10, 225);*/
+    transition: 750ms;
+    transform-origin: 0 100% 0;
+    transform: none;
+}
+
 #kullanıcı-çekmece-ayarlar
 {
     display: none;
@@ -97,6 +113,11 @@ body
 @media (orientation:landscape)
 {
     .kullanıcı-çekmece
+    {
+        width: 25vw;
+    }
+
+    .nokta-çekmece
     {
         width: 25vw;
     }

@@ -9,9 +9,18 @@
         <link rel="stylesheet" href="başlıklar.css"/>
         <link rel="stylesheet" href="yazılar.css"/>
         <link rel="stylesheet" href="sayfa.css"/>
+        <link rel="stylesheet" href="map.css">
 
         <script src="JavaScript/sayfa.js"></script>
         <script src="JavaScript/üyelik.js"></script>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
     </head>
 
     <body style="margin: 0; padding: 0;">
@@ -69,7 +78,14 @@
             </div>
         </div>
 
-        <div class="sayfa-gövdesi">aaaaaaaaaa</div>
+        <div id="nokta-çekmecesi" class="nokta-çekmece"> 
+            <div class="çekmece-içi">
+            </div>
+        </div>
+
+        <div id="map" class="sayfa-gövdesi"></div>
+
+        <script src="JavaScript/map.js"></script>
 
         <div id="kapatıcı" onclick="KullanıcıÇekmecesiniKapat()"></div>
 
