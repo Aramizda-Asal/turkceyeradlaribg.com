@@ -1,4 +1,6 @@
-var map = L.map('map').setView([42.2000008,24.3330002], 13);
+var map = L.map('map', { zoomControl: false}).setView([42.2000008,24.3330002], 13);
+var zoom_controls = new L.Control.Zoom({ position: 'bottomright' });
+zoom_controls.addTo(map);
 
 function markerClick(e)
 {
