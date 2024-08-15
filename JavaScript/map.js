@@ -34,9 +34,61 @@ var BulgaristanŞehirNoktaGeo =
           "type": "Point",
           "coordinates": [24.74551641878407,42.13585393690252]
         }
+    },
+
+    {
+      "type": "Feature",
+      "properties": 
+      {
+        "label": "Blagoevgrad"
+      },
+      "geometry": 
+      {
+        "type": "Point",
+        "coordinates": [23.25027778,41.75027778]
       }
+    },
+
+    {
+      "type": "Feature",
+      "properties": 
+      {
+        "label": "Burgas"
+      },
+      "geometry": 
+      {
+        "type": "Point",
+        "coordinates": [27.25027778,42.50027778]
+      }
+    },
+
+    {
+      "type": "Feature",
+      "properties": 
+      {
+        "label": "Dobrich"
+      },
+      "geometry": 
+      {
+        "type": "Point",
+        "coordinates": [27.8061111,43.58361111] 
+      }
+    },
+
+    {
+      "type": "Feature",
+      "properties": 
+      {
+        "label": "Gabrovo"
+      },
+      "geometry": 
+      {
+        "type": "Point",
+        "coordinates": [25.25027778,42.91694444]
+      }
+    }
   ]
-};
+}
 
 function MarkerClickFeature(feature, layer) 
 {
