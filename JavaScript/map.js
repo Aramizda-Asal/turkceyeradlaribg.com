@@ -129,5 +129,6 @@ function MarkerClickFeature(feature, layer)
     layer.bindTooltip(feature.properties.Türkçe, {permanent: true, direction: "top", className: "nokta-label"}).openTooltip();
 }
 
-var BulgaristanŞehirNokta = L.geoJSON(BulgaristanŞehirNoktaGeo, {onEachFeature: MarkerClickFeature})
+NoktalarıBaşlat()
+var BulgaristanŞehirNokta = L.geoJSON(noktalarJSON, {onEachFeature: MarkerClickFeature})
 BulgaristanŞehirNokta.addTo(map)
