@@ -1,4 +1,4 @@
-var map = L.map('map', { zoomControl: false}).setView([42.2000008,24.3330002], 13);
+var map = L.map('map', { zoomControl: false}).setView([42.2000008,24.3330002], 10);
 var zoom_controls = new L.Control.Zoom({ position: 'bottomright' });
 zoom_controls.addTo(map);
 
@@ -29,3 +29,22 @@ function MarkerClickFeature(feature, layer)
 NoktalarıBaşlat()
 var BulgaristanŞehirNokta = L.geoJSON(noktalarJSON, {onEachFeature: MarkerClickFeature})
 BulgaristanŞehirNokta.addTo(map)
+
+
+map.on
+('zoomend', function()
+        {
+            var Currentzoom = map.getZoom();
+            if(Currentzoom >= 14)
+            {
+                map.removeLayer(BulgaristanŞehirNokta);
+            }
+            else
+            {
+                if(!map.hasLayer(BulgaristanŞehirNokta))
+                {
+                    BulgaristanŞehirNokta.addTo(map)
+                }
+            }
+        }
+)
