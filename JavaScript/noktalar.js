@@ -33,8 +33,9 @@ var noktalarJSON =
     "features": []
 };
 
-function NoktalarıBaşlat()
+async function NoktalarıBaşlat()
 {
+    //let geçicinoktalar = await ŞehirNoktalarınıÇek(); //veri tabanından çekilen noktalar diziye atanıyor
     let noktalar = [];
     noktalar.push(new Feature("Pazardzhik", "Пазарджик", "Pazarcık", "PazarcıkO", 42.192271, 24.334235));
     noktalar.push(new Feature("Plovdiv", "Пловдив", "Filibe", "FilibeO", 42.13585393690252, 24.74551641878407));
@@ -43,4 +44,17 @@ function NoktalarıBaşlat()
     noktalar.push(new Feature("Dobrich", "Добрич", "Dobrich", "DobrichO",43.58361111, 27.8061111));
     noktalar.push(new Feature("Gabrovo", "Габрово", "Gabrovo", "GabrovoO", 42.91694444, 25.25027778))
     noktalarJSON.features = noktalar;
+}
+
+
+//Veri tabanından noktaları çekme fonksiyonu.
+async function ŞehirNoktalarınıÇek()
+{
+    let url = "http://localhost:5130/Harita/NoktaAl/Şehir";
+    
+    let response =  await fetch(url, {method:"GET"});
+
+    let responsejs = await response.json();
+
+    return responsejs;
 }
