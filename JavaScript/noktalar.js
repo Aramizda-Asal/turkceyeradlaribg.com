@@ -27,23 +27,54 @@ class Feature
     }
 }
 
-var noktalarJSON =
+var ŞehirnoktalarJSON =
 {
     "type": "FeatureCollection",
     "features": []
 };
 
+var KöynoktalarJSON =
+{
+    "type": "FeatureCollection",
+    "features": []
+};
+
+var KasabanoktalarJSON =
+{
+    "type": "FeatureCollection",
+    "features": []
+};
+
+let Şehirnoktalar = [];
+let Köynoktalar = [];
+let Kasabanoktalar = [];
+
 async function NoktalarıBaşlat()
 {
-    //let geçicinoktalar = await ŞehirNoktalarınıÇek(); //veri tabanından çekilen noktalar diziye atanıyor
-    let noktalar = [];
-    noktalar.push(new Feature("Pazardzhik", "Пазарджик", "Pazarcık", "PazarcıkO", 42.192271, 24.334235));
-    noktalar.push(new Feature("Plovdiv", "Пловдив", "Filibe", "FilibeO", 42.13585393690252, 24.74551641878407));
-    noktalar.push(new Feature("Blagoevgrad", "Благоевград", "Blagoevgrad", "BlagoevgradO", 41.75027778,23.25027778));
-    noktalar.push(new Feature("Burgas", "Бургас", "Burgas", "BurgasO", 42.50027778, 27.25027778));
-    noktalar.push(new Feature("Dobrich", "Добрич", "Dobrich", "DobrichO",43.58361111, 27.8061111));
-    noktalar.push(new Feature("Gabrovo", "Габрово", "Gabrovo", "GabrovoO", 42.91694444, 25.25027778))
-    noktalarJSON.features = noktalar;
+    await ŞehirNoktalarınıÇek();
+    await KöyNoktalarınıÇek();
+    await KasabaNoktalarınıÇek();
+    
+    /*
+    Şehirnoktalar.push(new Feature("Pazardzhik", "Пазарджик", "Pazarcık", "PazarcıkO", 42.192271, 24.334235));
+    Şehirnoktalar.push(new Feature("Plovdiv", "Пловдив", "Filibe", "FilibeO", 42.13585393690252, 24.74551641878407));
+    Şehirnoktalar.push(new Feature("Blagoevgrad", "Благоевград", "Blagoevgrad", "BlagoevgradO", 41.75027778,23.25027778));
+    Şehirnoktalar.push(new Feature("Burgas", "Бургас", "Burgas", "BurgasO", 42.50027778, 27.25027778));
+    Şehirnoktalar.push(new Feature("Dobrich", "Добрич", "Dobrich", "DobrichO",43.58361111, 27.8061111));
+    Şehirnoktalar.push(new Feature("Gabrovo", "Габрово", "Gabrovo", "GabrovoO", 42.91694444, 25.25027778))
+    */
+
+    ŞehirnoktalarJSON.features = Şehirnoktalar;
+    KöynoktalarJSON.features = Köynoktalar;
+    KasabanoktalarJSON.features = Kasabanoktalar;
+
+    BulgaristanŞehirNokta = L.geoJSON(ŞehirnoktalarJSON, {onEachFeature: MarkerClickFeature});
+    BulgaristanKöyNokta = L.geoJSON(KöynoktalarJSON, {onEachFeature: MarkerClickFeature});
+    BulgaristanKasabaNokta = L.geoJSON(KasabanoktalarJSON, {onEachFeature: MarkerClickFeature});
+
+    BulgaristanŞehirNokta.addTo(map);
+    BulgaristanKöyNokta.addTo(map);
+    BulgaristanKasabaNokta.addTo(map);
 }
 
 
@@ -56,5 +87,42 @@ async function ŞehirNoktalarınıÇek()
 
     let responsejs = await response.json();
 
-    return responsejs;
+    for(let i = 0; i<responsejs.length; i++)
+    {
+        let enlem = parseFloat(responsejs[i][0]);
+        let boylam = parseFloat(responsejs[i][1]);
+        Şehirnoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam));
+    }
+}
+
+async function KöyNoktalarınıÇek()
+{
+    let url = "http://localhost:5130/Harita/NoktaAl/Köy";
+    
+    let response =  await fetch(url, {method:"GET"});
+
+    let responsejs = await response.json();
+
+    for(let i = 0; i<responsejs.length; i++)
+    {
+        let enlem = parseFloat(responsejs[i][0]);
+        let boylam = parseFloat(responsejs[i][1]);
+        Köynoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam));
+    }
+}
+
+async function KasabaNoktalarınıÇek()
+{
+    let url = "http://localhost:5130/Harita/NoktaAl/Kasaba";
+    
+    let response =  await fetch(url, {method:"GET"});
+
+    let responsejs = await response.json();
+
+    for(let i = 0; i<responsejs.length; i++)
+    {
+        let enlem = parseFloat(responsejs[i][0]);
+        let boylam = parseFloat(responsejs[i][1]);
+        Kasabanoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam));
+    }
 }

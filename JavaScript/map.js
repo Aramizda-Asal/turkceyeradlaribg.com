@@ -29,8 +29,10 @@ function MarkerClickFeature(feature, layer)
 
 //Noktaları oluşturan ve haritaya ekleyen fonksiyon.
 NoktalarıBaşlat()
-var BulgaristanŞehirNokta = L.geoJSON(noktalarJSON, {onEachFeature: MarkerClickFeature})
-BulgaristanŞehirNokta.addTo(map)
+
+//!!Alttaki işlem noktalar.js'de şehir noktalarını başlat fonksiyonuna taşındı şimdilik burda da tutuluyor. 
+//var BulgaristanŞehirNokta  = L.geoJSON(noktalarJSON, {onEachFeature: MarkerClickFeature})
+//BulgaristanŞehirNokta.addTo(map)
 
 
 //Haritadaki şehir, kasaba noktalarının zoomlara orantılı olarak gösterilip, gösterilmemesini ayarlayan fonksiyon.
