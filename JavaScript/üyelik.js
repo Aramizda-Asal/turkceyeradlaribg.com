@@ -35,7 +35,10 @@ function GirişYap()
     fetch(url, {method: 'GET'})
         .then(response => response.json())
         .then((response) => {
-            console.log(response)
+            console.log(response);
+            let gelen = JSON.parse(response);
+            console.log(gelen.Kullanıcı);
+            ÇerezOluştur(gelen.Kimlik, gelen.Kullanıcı, new Date(gelen.Bitiş));
             if(response == "")
             {
                 alert("Reddedildi")

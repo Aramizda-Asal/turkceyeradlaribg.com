@@ -66,4 +66,10 @@
     border-radius: 20px;
     padding: 1%;
     border: none;
+    outline: none;
+    box-shadow: 0 0 10px 1px #777777;
+}
+.arama-çubuğu:focus
+{
+    box-shadow: 0 0 10px 3px #158479;
 }
