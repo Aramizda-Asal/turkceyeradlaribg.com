@@ -1,7 +1,6 @@
-function ÇerezOluştur(oturumkimlik, kullanıcıkimlik, sontarih)
+function ÇerezOluştur(ad, değer, son_tarih)
 {
-    let expires = "expires="+ sontarih.toUTCString();
-    document.cookie = "OturumKimlik=" + oturumkimlik + ";" + expires + ";path=/";
-    document.cookie = "KullanıcıKimlik=" + kullanıcıkimlik + ";" + expires + ";path=/";
+    let expires = "expires=" + son_tarih.toUTCString() + "; ";
+    document.cookie = ad + "=" + değer + "; " + expires + "path=/; SameSite=Strict;";
     console.log(document.cookie);
 }

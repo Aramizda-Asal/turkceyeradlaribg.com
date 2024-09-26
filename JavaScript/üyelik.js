@@ -27,8 +27,8 @@ function KayitOl()
 
 function GirişYap()
 {
-    let kullanıcıAdı = document.getElementById("kullanıcıadı-giriş").value
-    let parola = document.getElementById("parola-giriş").value
+    let kullanıcıAdı = encodeURIComponent(document.getElementById("kullanıcıadı-giriş").value);
+    let parola = encodeURIComponent(document.getElementById("parola-giriş").value);
 
     let url = "http://localhost:5130/Oturum/GirişYap/" + kullanıcıAdı + "/" + parola;
     alert(url)
@@ -38,7 +38,9 @@ function GirişYap()
             console.log(response);
             let gelen = JSON.parse(response);
             console.log(gelen.Kullanıcı);
-            ÇerezOluştur(gelen.Kimlik, gelen.Kullanıcı, new Date(gelen.Bitiş));
+            let çerez_sonu = new Date(gelen.Bitiş);
+            ÇerezOluştur("KULLANICI", gelen.Kullanıcı, çerez_sonu);
+            ÇerezOluştur("OTURUM", gelen.Kimlik, çerez_sonu);
             if(response == "")
             {
                 alert("Reddedildi")
