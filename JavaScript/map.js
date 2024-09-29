@@ -164,19 +164,21 @@ function Ara()
         console.log("Orta İçerenler " + Ortaİçerenler);
         console.log("Son İçerenler " + sonİçerenler);
         
-        AraÇekmecesiniAç(ilkİçerenler,Ortaİçerenler,sonİçerenler);
+        AraÇekmecesiniAç(ilkİçerenler,Ortaİçerenler,sonİçerenler);//Ara çekmecesini açar.
     }
 }
 
-function İsimliNoktasınaGit(Bulgarca_Latin)
+function İsimliNoktasınaGit(Bulgarca_Latin)//Ekranı, ismi verilen bölgeye götüren fonksiyon.
 {
     let koordinat;
     for(let i = 0; i<ŞehirnoktalarJSON.features.length; i++)
     {  
-        if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin == Bulgarca_Latin)
+        if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin == Bulgarca_Latin)//Verilen isimle eşleşen noktayı sorgular. 
         {
-            koordinat = ŞehirnoktalarJSON.features[i].geometry.coordinates;
+            koordinat = ŞehirnoktalarJSON.features[i].geometry.coordinates;//Eşleşen noktanın koordinatını alır.
         }
     }
-    map.setView([koordinat[1],koordinat[0]],12);
+
+    let zoom = map.getZoom(); //Mevcut zoom'u alır. 
+    map.setView([koordinat[1],koordinat[0]],zoom);
 }
