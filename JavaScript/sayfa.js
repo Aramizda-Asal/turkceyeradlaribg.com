@@ -91,3 +91,51 @@ function AyarlaraGit()
     document.getElementById("kullanıcı-çekmece-ayarlar").style.display = "block"
     document.getElementById("kullanıcı-çekmece-profil").style.display = "none"
 }
+
+function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
+{   
+    document.getElementById("ara-çekmece").style.display = "block";
+
+    let aramaSonucuVar = false;
+    if(ilkİçerenler.length > 0)
+    {
+        for(let i = 0; i < ilkİçerenler.length; i++)
+        {
+            document.getElementById("ara-çekmece").innerHTML = "<div class=\"ara-çekmece-satır\">"+ ilkİçerenler[i] +"</div>";
+        }
+        aramaSonucuVar = true;
+    }
+    else
+    {
+        document.getElementById("ara-çekmece").innerHTML = "";
+    }
+    if(Ortaİçerenler.length > 0)
+    {
+        for(let i = 0; i < Ortaİçerenler.length; i++)
+        {
+            document.getElementById("ara-çekmece").innerHTML += "<div class=\"ara-çekmece-satır\">"+ Ortaİçerenler[i] +"</div>";
+        }
+        aramaSonucuVar = true;
+    }
+    else if(ilkİçerenler.length <= 0 && Ortaİçerenler.length <= 0)
+    {
+        document.getElementById("ara-çekmece").innerHTML = "";
+    }
+    if(sonİçerenler.length > 0)
+    {
+        for(let i = 0; i < sonİçerenler.length; i++)
+        {
+            document.getElementById("ara-çekmece").innerHTML += "<div class=\"ara-çekmece-satır\">"+ sonİçerenler[i] +"</div>";
+        }
+        aramaSonucuVar = true;
+    }
+    if(!aramaSonucuVar)
+    {
+        document.getElementById("ara-çekmece").innerHTML = "<div class=\"ara-çekmece-satır\">"+ "Yok" +"</div>";
+    }
+}
+
+function AraÇekmecesiniKapat()
+{
+    document.getElementById("ara-çekmece").style.display = "none";
+}

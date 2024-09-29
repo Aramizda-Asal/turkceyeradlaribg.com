@@ -62,7 +62,7 @@ map.on
         }
 )
 
-function Ara()
+function Ara() 
 {
     let YazılanŞey = document.getElementById("aramaÇubuğu").value
     if(YazılanŞey.trim().length == 0)      // Alfanümerik olmayan bir tuşa basınca da tekrar kontrol gönderiyor.
@@ -164,6 +164,6 @@ function Ara()
         console.log("Orta İçerenler " + Ortaİçerenler);
         console.log("Son İçerenler " + sonİçerenler);
         
+        AraÇekmecesiniAç(ilkİçerenler,Ortaİçerenler,sonİçerenler);
     }
 }
-
