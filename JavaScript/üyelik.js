@@ -37,9 +37,9 @@ function GirişYap()
         .then((response) => {
             console.log(response);
             let gelen = JSON.parse(response);
-            console.log(gelen.Kullanıcı);
+            console.log(gelen);
             let çerez_sonu = new Date(gelen.Bitiş);
-            ÇerezOluştur("KULLANICI", gelen.Kullanıcı, çerez_sonu);
+            ÇerezOluştur("KULLANICI", gelen.Kullanıcı.Kimlik, çerez_sonu);
             ÇerezOluştur("OTURUM", gelen.Kimlik, çerez_sonu);
             if(response == "")
             {
