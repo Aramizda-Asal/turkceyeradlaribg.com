@@ -180,6 +180,13 @@ function İsimliNoktasınaGit(Bulgarca_Latin)//Ekranı, ismi verilen bölgeye g�
             koordinat = ŞehirnoktalarJSON.features[i].geometry.coordinates;//Eşleşen noktanın koordinatını alır.
         }
     }
+    for(let i = 0; i<KöynoktalarJSON.features.length; i++)
+    {
+        if(KöynoktalarJSON.features[i].properties.BulgarcaLatin == Bulgarca_Latin)
+        {
+            koordinat = KöynoktalarJSON.features[i].geometry.coordinates;
+        }
+    }
 
     let zoom = map.getZoom(); //Mevcut zoom'u alır. 
     map.setView([koordinat[1],koordinat[0]],zoom);
