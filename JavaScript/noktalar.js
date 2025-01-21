@@ -13,7 +13,7 @@ class Nokta
 
 class Feature
 {
-    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca, enlem, boylam)
+    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca, enlem, boylam, kimlik)
     {
         this.type = "Feature";
         this.properties = {};
@@ -21,6 +21,7 @@ class Feature
         this.properties["BulgarcaKiril"] = Bulgarca_Kiril;
         this.properties["Türkçe"] = Türkçe;
         this.properties["Osmanlıca"] = Osmanlıca;
+        this.properties["Kimlik"] = kimlik;
         this.geometry = {};
         this.geometry["type"] = "Point";
         this.geometry["coordinates"] = [boylam, enlem];
@@ -91,7 +92,7 @@ async function ŞehirNoktalarınıÇek()
     {
         let enlem = parseFloat(responsejs[i][0]);
         let boylam = parseFloat(responsejs[i][1]);
-        Şehirnoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam));
+        Şehirnoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam, responsejs[i][8]));
     }
 }
 
@@ -107,7 +108,7 @@ async function KöyNoktalarınıÇek()
     {
         let enlem = parseFloat(responsejs[i][0]);
         let boylam = parseFloat(responsejs[i][1]);
-        Köynoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam));
+        Köynoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam, responsejs[i][8]));
     }
 }
 
@@ -123,6 +124,6 @@ async function KasabaNoktalarınıÇek()
     {
         let enlem = parseFloat(responsejs[i][0]);
         let boylam = parseFloat(responsejs[i][1]);
-        Kasabanoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam));
+        Kasabanoktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam, responsejs[i][8]));
     }
 }
