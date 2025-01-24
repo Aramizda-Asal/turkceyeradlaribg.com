@@ -71,20 +71,20 @@ function NoktaÇekmecesiniKapat()
 function FavoriButonuDoldur()
 {
     let buton = document.getElementById("favori-butonu");
-    let imgElement = buton.querySelector('#favori-resmi').querySelector('img');
     let spanElement = buton.querySelector('#favori-yazisi');
-    imgElement.src = "doluyildiz.png";
+    let spanStar = document.getElementById("favori-resmi");
     spanElement.textContent = "Favorilerden Çıkar";
+    spanStar.style.color = "#ffd700"; 
     buton.setAttribute('onclick', 'FavorilerdenCikar(this)');
 }
 
 function FavoriButonuBosalt()
 {
     let buton = document.getElementById("favori-butonu");
-    let imgElement = buton.querySelector('#favori-resmi').querySelector('img');
     let spanElement = buton.querySelector('#favori-yazisi');
-    imgElement.src = "bosyildiz.png";
+    let spanStar = document.getElementById("favori-resmi");
     spanElement.textContent = "Favorilere Ekle";
+    spanStar.style.color = "#3a3a3a"; 
     buton.setAttribute('onclick', 'FavorilereEkle(this)');
 }
 

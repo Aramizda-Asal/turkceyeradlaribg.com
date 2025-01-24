@@ -151,19 +151,23 @@
     color: #158479;
 }
 
-.favori-resmi {
-    width: 20%;
+#favori-resmi 
+{
+    color: #3a3a3a; 
+
+    transform: scale(1.5); 
+    line-height: 1; 
+
     display: inline-block;
-    height: auto;
+    vertical-align: middle;
+
+    padding-right: 5%;
+
+    text-shadow: 0.8px 0px #ffd700, -0.8px 0px #ffd700, 0px 0.8px #ffd700, 0px -0.8px #ffd700;
 }
 
-.favori-resmi img {
-    width: 100%;
-    height: auto;
-}
-
-#favori-yazisi {
-    height: 100%;
-    width: 80%;
-    display: inline-block;
+#favori-yazisi 
+{
+    font-size: inherit;
+    vertical-align: middle;
 }
