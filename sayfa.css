@@ -94,6 +94,11 @@ body
     display: none;
 }
 
+.kişisel-çekmece-sayfası
+{
+    display: none;
+}
+
 .çekmece-içi
 {
     height: 95vh;

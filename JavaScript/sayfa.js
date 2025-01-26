@@ -142,10 +142,34 @@ function Göster_GirişYap()
     document.getElementById("giriş-yap").style.display = "block";
 }
 
-function AyarlaraGit()
+function KişiselÇekmeceSayfalarınıKapat()
 {
-    document.getElementById("kullanıcı-çekmece-ayarlar").style.display = "block"
-    document.getElementById("kullanıcı-çekmece-profil").style.display = "none"
+    let sayfalar = document.getElementsByClassName("kişisel-çekmece-sayfası");
+    if (sayfalar.length >= 1)
+    {
+        for (let i = 0; i < sayfalar.length; i++)
+        {
+            sayfalar[i].style.display = "none";
+        }
+    }
+}
+function KÇAnaSayfa()
+{
+    KişiselÇekmeceSayfalarınıKapat();
+    let ana_sayfa = document.getElementById("kişisel-çekmece-ana");
+    if (ana_sayfa !== null)
+    {
+        ana_sayfa.style.display = "block";
+    }
+}
+function KÇAyarlarSayfası()
+{
+    KişiselÇekmeceSayfalarınıKapat();
+    let ayarlar_sayfası = document.getElementById("kişisel-çekmece-ayarlar");
+    if (ayarlar_sayfası !== null)
+    {
+        ayarlar_sayfası.style.display = "block";
+    }
 }
 
 function AyarlaraGit()

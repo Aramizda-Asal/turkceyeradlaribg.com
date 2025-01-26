@@ -20,6 +20,8 @@ function KullanıcıÇekmecesiniKişiselleştir()
         document.getElementById("kullanıcı-çekmecesi-kişisel").style.display = "block";
 
         document.getElementById("kullanıcı-çekmecesi-başlık").innerText = şimdi_kullanan.Adı;
+
+        document.getElementById("kişisel-çekmece-ana").style.display = "block";
     }
     else
     {
