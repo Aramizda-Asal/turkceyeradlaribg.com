@@ -150,3 +150,47 @@ async function ParolaDeğiştir()
         return false;
     }
 }
+
+async function KullanıcıAdıDeğiştir()
+{
+    if (şimdi_kullanan === null)
+    {
+        Açılış();
+        return false;
+    }
+
+    let parola = document.getElementById("KullanıcıAdıDeğiştir-Parola");
+    let yeni_ad = document.getElementById("KullanıcıAdıDeğiştir-Yenisi");
+
+    if (parola.value.length > 0 &&
+        yeni_ad.value.length > 0)
+    {
+        let kullanıcı_kimliği = encodeURIComponent(şimdi_kullanan.Kimlik);
+        let giden_parola = encodeURIComponent(parola.value);
+        let giden_yeni = encodeURIComponent(yeni_ad.value);
+
+        let url = `${adres}Kullanıcı/KullanıcıAdıDeğiştir/${kullanıcı_kimliği}/` +
+                  `${giden_parola}/${giden_yeni}/`;
+        console.log(url);
+        let yanıt = await fetch(url, {method: "PATCH"});
+
+        if (yanıt.status == 200)
+        {
+            alert("Kullanıcı adınız başarıyla yenilendi.");
+            Açılış();
+        }
+        else
+        {
+            alert("Kullanıcı adınız yenilenemedi.");
+        }
+
+        parola.value = "";
+        yeni_ad.value = "";
+        return yanıt.status == 200;
+    }
+    else
+    {
+        alert("Kullanıcı adınızı değiştirebilmek için tüm kutuları doldurmalısınız.");
+        return false;
+    }
+}
