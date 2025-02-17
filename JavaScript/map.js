@@ -184,24 +184,32 @@ function Ara()
     }
 }
 
-function İsimliNoktasınaGit(Bulgarca_Latin)//Ekranı, ismi verilen bölgeye götüren fonksiyon.
+//Üzücü Bir Fonksiyon
+function NoktayıGetir(Nokta_Kimliği)
 {
-    let koordinat;
-    for(let i = 0; i<ŞehirnoktalarJSON.features.length; i++)
-    {  
-        if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin == Bulgarca_Latin)//Verilen isimle eşleşen noktayı sorgular. 
-        {
-            koordinat = ŞehirnoktalarJSON.features[i].geometry.coordinates;//Eşleşen noktanın koordinatını alır.
-        }
-    }
-    for(let i = 0; i<KöynoktalarJSON.features.length; i++)
+    let result = ŞehirnoktalarJSON.features.filter(feature => feature.properties.Kimlik === Nokta_Kimliği)
+    if(result.length === 0)
     {
-        if(KöynoktalarJSON.features[i].properties.BulgarcaLatin == Bulgarca_Latin)
-        {
-            koordinat = KöynoktalarJSON.features[i].geometry.coordinates;
-        }
+        result = KöynoktalarJSON.features.filter(feature => feature.properties.Kimlik === Nokta_Kimliği)
     }
+    if(result.length === 0)
+    {
+        result = KasabanoktalarJSON.features.filter(feature => feature.properties.Kimlik === Nokta_Kimliği)
+    }
+    if(result.length === 0)
+    {
+        return null;
+    }
+    return result;
+}
 
-    let zoom = map.getZoom(); //Mevcut zoom'u alır. 
-    map.setView([koordinat[1],koordinat[0]],zoom);
+//Zoomu düzgün ayarlanacak
+//Tıklanan noktanın penceresi açılacak
+function NoktayaGit(Nokta_Kimliği)
+{
+    let nokta = NoktayıGetir(Nokta_Kimliği);
+
+    let zoom = map.getZoom();
+    map.setView([nokta[0].geometry.coordinates[1],nokta[0].geometry.coordinates[0]],zoom);
+    
 }
