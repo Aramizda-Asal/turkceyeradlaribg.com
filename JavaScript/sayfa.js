@@ -266,3 +266,60 @@ function AraÇekmecesiniKapat()
 {
     document.getElementById("ara-çekmece").style.display = "none";
 }
+
+/**
+ * Kişisel kullanıcı çekmecesinin görünümünü favoriler sayfası yapar.
+ */
+function KÇFavorilerSayfası()
+{
+    KişiselÇekmeceSayfalarınıKapat();
+    let favori = document.getElementById("Favori-Bölge-Butonlar");
+    favori.innerHTML = "";
+    let ayarlar_sayfası = document.getElementById("kişisel-çekmece-Favoriler");
+    if (ayarlar_sayfası !== null)
+    {
+        ayarlar_sayfası.style.display = "block";
+        KÇFavorilerSayfasınıDoldur();
+    }
+}
+
+async function KÇFavorilerSayfasınıDoldur()
+{
+    let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");
+    let url = `http://localhost:5130/Favori/FavorileriGöster`;
+    let yanıt = await fetch(url, 
+        {
+            method: 'GET',
+            headers: 
+            {
+                'KULLANICI': kullanıcı_kimliği,
+                'OTURUM': oturum_kimliği
+            }
+        });
+
+    if(yanıt.status == 200)
+    {
+        let div = document.getElementById('Favori-Bölge-Butonlar');
+        let yanıt_json = await yanıt.json();
+        let noktalar = JSON.parse(yanıt_json);
+
+        noktalar.forEach((favori) => 
+        {
+            let result = NoktayıGetir(favori);
+            let button = document.createElement('button');
+            button.className = "D1-sarımsı butonlar-profil";
+            button.innerText = result[0].properties.BulgarcaLatin;
+            button.onclick = function () 
+            {
+                NoktayaGit(favori);
+            };
+            div.appendChild(button);
+        });
+    }
+    else
+    {
+        alert("yok");
+    }
+    
+}
