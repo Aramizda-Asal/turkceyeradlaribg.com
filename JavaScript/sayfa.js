@@ -225,39 +225,59 @@ function KÇKullanıcıAdıDeğiştirSayfası()
 
 function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
 {   
-    document.getElementById("ara-çekmece").style.display = "block";//Div'lerin div'i açılır.(Ana-div)
-
-    let satırHTML_1 = "<div class=\"ara-çekmece-satır\" onclick=\"İsimliNoktasınaGit('";
-    let satırHTML_2 = "')\">"; //Alttaki kodların okunaklılığını arttırır.
-    let satırHTML_3 = "</div>"; //Ayrıca çocuk div'lere sınıf ve fonksiyon verir.
+    let araÇekmece = document.getElementById("ara-çekmece");//Div'lerin div'i. (Ana-div)
+    araÇekmece.style.display = "block";
 
     let aramaSonucuVar = false; 
+
     document.getElementById("ara-çekmece").innerHTML = "";//Her arama başında çekmeceyi boşaltır.
+
     if(ilkİçerenler.length > 0) //Dizilerin boş olup olmadığına bakar.
     {
-        for(let i = 0; i < ilkİçerenler.length; i++)
+        ilkİçerenler.forEach((ilkİçeren) =>
         {
-            document.getElementById("ara-çekmece").innerHTML +=  //Ana-div'e arama sonucunu içeren çocuk-div ekler.
-            satırHTML_1 + ilkİçerenler[i] + satırHTML_2 + ilkİçerenler[i] + satırHTML_3; 
-        }
+            let button = document.createElement('div');
+            button.className = "ara-çekmece-satır";
+            button.innerText = ilkİçeren.Ad;
+            button.onclick = function ()
+            {
+                NoktayaGit(ilkİçeren.Kimlik);
+            };
+            araÇekmece.appendChild(button);
+        });
+
         aramaSonucuVar = true;
     }
     if(Ortaİçerenler.length > 0)
     {
-        for(let i = 0; i < Ortaİçerenler.length; i++)
+        Ortaİçerenler.forEach((Ortaİçeren) =>
         {
-            document.getElementById("ara-çekmece").innerHTML += 
-            satırHTML_1 + Ortaİçerenler[i] + satırHTML_2 + Ortaİçerenler[i] + satırHTML_3;
-        }
+            let button = document.createElement('div');
+            button.className = "ara-çekmece-satır";
+            button.innerText = Ortaİçeren.Ad;
+            button.onclick = function ()
+            {
+                NoktayaGit(Ortaİçeren.Kimlik);
+            };
+            araÇekmece.appendChild(button);
+        });
+
         aramaSonucuVar = true;
     }
     if(sonİçerenler.length > 0)
     {
-        for(let i = 0; i < sonİçerenler.length; i++)
+        sonİçerenler.forEach((sonİçeren) =>
         {
-            document.getElementById("ara-çekmece").innerHTML += 
-            satırHTML_1 + sonİçerenler[i] + satırHTML_2 + sonİçerenler[i] + satırHTML_3;
-        }
+            let button = document.createElement('div');
+            button.className = "ara-çekmece-satır";
+            button.innerText = sonİçeren.Ad;
+            button.onclick = function ()
+            {
+                NoktayaGit(sonİçeren.Kimlik);
+            };
+            araÇekmece.appendChild(button);
+        });
+
         aramaSonucuVar = true;
     }
     if(!aramaSonucuVar) //Arama sonucu yoksa sonuç olmadığını belirtir. 
