@@ -79,91 +79,55 @@ map.on
         }
     });
 
-function Ara() 
+function Ara()
 {
     let YazılanŞey = document.getElementById("aramaÇubuğu").value
     YazılanŞey = YazılanŞey.toLowerCase();
-    if(YazılanŞey.trim().length == 0)      // Alfanümerik olmayan bir tuşa basınca da tekrar kontrol gönderiyor.
+    if(YazılanŞey.trim().length == 0)      // Alfanümerik olmayan bir tuşa basınca da tekrar kontrol gönderiyor.  //- ile boşluk karekteri aynı yapılmalı
     {
-        console.log("Boş")
         AraÇekmecesiniKapat();
     }
     else
     {
         let İçerenler = [];
-        //Şehir noktalarında var mı kontrolü.
-        for(let i = 0; i<ŞehirnoktalarJSON.features.length; i++)
+        let SecilenDil = document.getElementById("Arama-Çubuğu-Dil").value
+        for(let i = 0; i<NoktalarJSON.features.length; i++)
         {  
-            if(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
+            if(SecilenDil === "Bulgarca-Latin")
             {
-                İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
+                if(NoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
+                {
+                    İçerenler.push(NoktalarJSON.features[i].properties.BulgarcaLatin);
+                }
             }
-            else if(ŞehirnoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
+            if(SecilenDil === "Bulgarca-Kiril")
             {
-                İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
+                if(NoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
+                {
+                    İçerenler.push(NoktalarJSON.features[i].properties.BulgarcaKiril);
+                }
             }
-            else if(ŞehirnoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
+            if(SecilenDil === "Türkçe")
             {
-                İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
+                if(NoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
+                {
+                    İçerenler.push(NoktalarJSON.features[i].properties.Türkçe);
+                }
             }
-            else if(ŞehirnoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
+            if(SecilenDil === "Osmanlıca")
             {
-                İçerenler.push(ŞehirnoktalarJSON.features[i].properties.BulgarcaLatin);
-            }
-        }
-
-        
-        //Köy noktalarında var mı kontrolü.
-        for(let i = 0; i<KöynoktalarJSON.features.length; i++)
-        {
-            if(KöynoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
-            {
-                İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
-            }
-            else if(KöynoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
-            {
-                İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
-            }
-            else if(KöynoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
-            {
-                İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
-            }
-            else if(KöynoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
-            {
-                İçerenler.push(KöynoktalarJSON.features[i].properties.BulgarcaLatin);
+                if(NoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
+                {
+                    İçerenler.push(NoktalarJSON.features[i].properties.Osmanlıca);
+                }
             }
         }
-        
-        //Kasaba noktalarında var mı kontrolü.
-        for(let i = 0; i<KasabanoktalarJSON.features.length; i++)
-        {
-            if(KasabanoktalarJSON.features[i].properties.BulgarcaLatin.toLowerCase().includes(YazılanŞey))
-            {
-                İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
-            }
-            else if(KasabanoktalarJSON.features[i].properties.BulgarcaKiril.toLowerCase().includes(YazılanŞey))
-            {
-                İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
-            }
-            else if(KasabanoktalarJSON.features[i].properties.Türkçe.toLowerCase().includes(YazılanŞey))
-            {
-                İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
-            }
-            else if(KasabanoktalarJSON.features[i].properties.Osmanlıca.toLowerCase().includes(YazılanŞey))
-            {
-                İçerenler.push(KasabanoktalarJSON.features[i].properties.BulgarcaLatin);
-            }
-        }
-
-        //Oluşturulan yeni dizice girilen yazının boyutu kadar ilk ve son karekterelere bakılarak bir düzen yapılacak !!!!Kendime Not!!!
-        //Harflerin büyük küçüklüğü önem arz etmemeli. !!!Kendime Not!!!
 
         let ilkİçerenler = [];
         let sonİçerenler = [];
         let Ortaİçerenler = [];
         for(let i = 0; i<İçerenler.length; i++)
         {
-            
             if(İçerenler[i].substring(0, YazılanŞey.length).toLowerCase() == YazılanŞey)
             {
                 ilkİçerenler.push(İçerenler[i]);
@@ -176,25 +140,21 @@ function Ara()
             {
                 sonİçerenler.push(İçerenler[i]);
             }
-            
-            
         }
-        console.log("İlk İçerenler " + ilkİçerenler);
-        console.log("Orta İçerenler " + Ortaİçerenler);
-        console.log("Son İçerenler " + sonİçerenler);
-        
+        ilkİçerenler.sort();
+        Ortaİçerenler.sort();
+        sonİçerenler.sort();
+
         AraÇekmecesiniAç(ilkİçerenler,Ortaİçerenler,sonİçerenler);//Ara çekmecesini açar.
     }
 }
 
-//Üzücü Bir Fonksiyon
 function NoktayıGetir(Nokta_Kimliği)
 {
     let result = NoktalarJSON.features.filter(feature => feature.properties.Kimlik === Nokta_Kimliği)
     return result;
 }
 
-//Zoomu düzgün ayarlanacak
 //Tıklanan noktanın penceresi açılacak
 function NoktayaGit(Nokta_Kimliği)
 {
