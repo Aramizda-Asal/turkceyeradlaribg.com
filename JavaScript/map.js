@@ -23,7 +23,6 @@ function MarkerClickFeature(feature, layer)
             document.getElementById("favori-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
 
             let url = `http://localhost:5130/Favori/SatirVarMi/${encodeURIComponent(ÇerezDeğeri("KULLANICI"))}/${encodeURIComponent(feature.properties.Kimlik)}`;   
-            console.log(url);
             let yanıt = await fetch(url, {method: 'POST'});
             if (yanıt.status === 200)
             {
@@ -41,40 +40,44 @@ function MarkerClickFeature(feature, layer)
     layer.bindTooltip(feature.properties.Türkçe, {permanent: true, direction: "top", className: "nokta-label"}).openTooltip();
 }
 
+let SehirKatmani = L.layerGroup();
+let KöyKatmani = L.layerGroup();
+let KasabaKatmani = L.layerGroup();
+let BulgaristanNokta;
 //Noktaları oluşturan ve haritaya ekleyen fonksiyon.
 NoktalarıBaşlat()
 
-var BulgaristanŞehirNokta;
-var BulgaristanKöyNokta;
-var BulgaristanKasabaNokta;
-
-//!!Alttaki işlem noktalar.js'de şehir noktalarını başlat fonksiyonuna taşındı şimdilik burda da tutuluyor. 
-//var BulgaristanŞehirNokta  = L.geoJSON(noktalarJSON, {onEachFeature: MarkerClickFeature})
-//BulgaristanŞehirNokta.addTo(map)
-
-
-//Haritadaki şehir, kasaba noktalarının zoomlara orantılı olarak gösterilip, gösterilmemesini ayarlayan fonksiyon.
+//Burası ters çalışıyor nedenini anlamadım anlamamaya devam ediyorum kolay gelsin.
 map.on
-('zoomend', function()
+('zoomend', function () 
+    {
+        if (map.getZoom() <= 10) 
         {
-            var Currentzoom = map.getZoom();
-            if(Currentzoom >= 10)
+            if(!map.hasLayer(SehirKatmani))
             {
-                map.removeLayer(BulgaristanŞehirNokta);
-                BulgaristanKöyNokta.addTo(map);
-                BulgaristanKasabaNokta.addTo(map);
+                map.addLayer(SehirKatmani);
             }
-            else
+
+            map.removeLayer(KöyKatmani);
+
+            map.removeLayer(KasabaKatmani);
+        } 
+        else
+        {
+            map.removeLayer(SehirKatmani);
+
+            if(!map.hasLayer(KöyKatmani))
             {
-                if(!map.hasLayer(BulgaristanŞehirNokta))
-                {
-                    BulgaristanŞehirNokta.addTo(map)
-                    map.removeLayer(BulgaristanKöyNokta);
-                    map.removeLayer(BulgaristanKasabaNokta);
-                }
+                map.addLayer(KöyKatmani);
             }
+
+            if(!map.hasLayer(KasabaKatmani))
+            {
+                map.addLayer(KasabaKatmani);
+            }
+            
         }
-)
+    });
 
 function Ara() 
 {
