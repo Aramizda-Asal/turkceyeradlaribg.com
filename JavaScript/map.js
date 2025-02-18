@@ -190,19 +190,7 @@ function Ara()
 //Üzücü Bir Fonksiyon
 function NoktayıGetir(Nokta_Kimliği)
 {
-    let result = ŞehirnoktalarJSON.features.filter(feature => feature.properties.Kimlik === Nokta_Kimliği)
-    if(result.length === 0)
-    {
-        result = KöynoktalarJSON.features.filter(feature => feature.properties.Kimlik === Nokta_Kimliği)
-    }
-    if(result.length === 0)
-    {
-        result = KasabanoktalarJSON.features.filter(feature => feature.properties.Kimlik === Nokta_Kimliği)
-    }
-    if(result.length === 0)
-    {
-        return null;
-    }
+    let result = NoktalarJSON.features.filter(feature => feature.properties.Kimlik === Nokta_Kimliği)
     return result;
 }
 
@@ -210,9 +198,16 @@ function NoktayıGetir(Nokta_Kimliği)
 //Tıklanan noktanın penceresi açılacak
 function NoktayaGit(Nokta_Kimliği)
 {
-    let nokta = NoktayıGetir(Nokta_Kimliği);
-
-    let zoom = map.getZoom();
-    map.setView([nokta[0].geometry.coordinates[1],nokta[0].geometry.coordinates[0]],zoom);
+    let nokta = NoktayıGetir(Nokta_Kimliği)[0];
+    let zoom
+    if(nokta.properties.BolgeTuru === "Şehir")
+    {
+        zoom = 8
+    }
+    else
+    {
+        zoom = 12
+    }
+    map.setView([nokta.geometry.coordinates[1],nokta.geometry.coordinates[0]],zoom);
     
 }
