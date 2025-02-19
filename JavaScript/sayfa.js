@@ -221,8 +221,6 @@ function KÇKullanıcıAdıDeğiştirSayfası()
     }
 }
 
-
-
 function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
 {   
     let araÇekmece = document.getElementById("ara-çekmece");//Div'lerin div'i. (Ana-div)
@@ -363,4 +361,16 @@ async function KÇFavorilerSayfasınıDoldur()
         alert("yok");
     }
     
+}
+
+function NoktaDuzenleSayfası()
+{
+    document.getElementById("nokta-penceresi").style.display = "none";
+    document.getElementById("noktayı-duzenle-penceresi").style.display = "block";
+}
+
+function NoktaSayfası()
+{
+    document.getElementById("nokta-penceresi").style.display = "block";
+    document.getElementById("noktayı-duzenle-penceresi").style.display = "none";
 }
