@@ -1,6 +1,7 @@
 class Nokta
 {
-    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca, enlem, boylam, bolge_turu)
+    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca,
+                enlem, boylam, bölge_türü, üst_bölge, kimlik)
     {
         this.Bulgarca_Latin = Bulgarca_Latin;
         this.Bulgarca_Kiril = Bulgarca_Kiril;
@@ -8,7 +9,9 @@ class Nokta
         this.Osmanlıca = Osmanlıca;
         this.enlem = enlem;
         this.boylam = boylam;
-        this.bolge_turu = bolge_turu;
+        this.bölge_türü = bölge_türü;
+        this.üst_bölge = üst_bölge;
+        this.kimlik = kimlik;
     }
 }
 
