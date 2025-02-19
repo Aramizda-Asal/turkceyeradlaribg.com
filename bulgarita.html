@@ -185,7 +185,7 @@
         </div>
 
         <div id="nokta-çekmecesi" class="nokta-çekmece"> 
-            <div class="çekmece-içi">
+            <div class="çekmece-içi" id="nokta-penceresi">
                 <div class="çekmece-içorta">
                     <div class="nokta-başlıklar">
                         <div class="nokta-büyükBaşlık" id="nokta-büyükBaşlık"></div>
@@ -201,6 +201,9 @@
                         <div>Koordinatlar:</div>
                         <div class="nokta-koordinat" id="nokta-koordinat"></div>
                     </div>
+
+                    <button class="favori-butonu" onclick="NoktaDuzenleSayfası()">Noktayı Düzenle
+                    </button>
                 </div>
 
                 <div class="çekmece-içalt">
@@ -214,6 +217,18 @@
                     target="_blank">Google Haritalar'da görüntüle</a>
 
                 </div>
+            </div>
+            <div class="çekmece-içi" id="noktayı-duzenle-penceresi">
+                <div class="çekmece-içorta duzenle">
+
+                </div>
+
+                <div class="çekmece-içalt düzenle">
+                    <button onclick="NoktaSayfası()" class="favori-butonu">Değişiklikleri Kaydet</button>
+                    <button onclick="NoktaSayfası()" class="favori-butonu">Geri Dön</button>
+                    <button class="favori-butonu" id="nokta-silme-butonu" konum-kimliği="" onclick="NoktaSil(this)">Noktayı Sil</button>
+                </div>
+
             </div>
         </div>
 

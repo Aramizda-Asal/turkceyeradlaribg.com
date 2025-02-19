@@ -445,3 +445,15 @@ async function KÇFavorilerSayfasınıDoldur()
     }
     
 }
+
+function NoktaDuzenleSayfası()
+{
+    document.getElementById("nokta-penceresi").style.display = "none";
+    document.getElementById("noktayı-duzenle-penceresi").style.display = "block";
+}
+
+function NoktaSayfası()
+{
+    document.getElementById("nokta-penceresi").style.display = "block";
+    document.getElementById("noktayı-duzenle-penceresi").style.display = "none";
+}
