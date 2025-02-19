@@ -88,7 +88,7 @@
     display: block;
 }
 
-.çekmece-içi input[type="text"], .çekmece-içi input[type="password"]
+.çekmece-içi input[type="text"], .çekmece-içi input[type="password"], .çekmece-içi input[type="number"], .çekmece-içi select
 {
     font-size: medium;
     font-weight: bold;
@@ -102,7 +102,7 @@
     border-bottom-color: #158479aa;
 }
 
-#kullanıcı-çekmecesi input
+#kullanıcı-çekmecesi input, #kullanıcı-çekmecesi select
 {
     margin: 0% auto 4%;
 }

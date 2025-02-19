@@ -220,8 +220,89 @@ function KÇKullanıcıAdıDeğiştirSayfası()
         KullanıcıAdıDeğiştir_sayfası.style.display = "block";
     }
 }
+/**
+ * Kişisel kullanıcı çekmecesinin görünümünü nokta ekleme sayfası yapar.
+ */
+function KÇNoktaEkleSayfası()
+{
+    KişiselÇekmeceSayfalarınıKapat();
+    let NoktaEkle_sayfası = document.getElementById("kişisel-çekmece-NoktaEkle");
+    if (NoktaEkle_sayfası !== null)
+    {
+        NoktaEkle_sayfası.style.display = "block";
+    }
+}
 
+async function KÇ_NoktaEkle_BölgeTürleriniGetir() 
+{
+    let BölgeTürüDropList = document.getElementById("NoktaEkle-BölgeTürü");
+    BölgeTürüDropList.innerHTML = "";
 
+    let url = `http://localhost:5130/Harita/GeçerliNoktaTürleri`;
+    let yanıt = await fetch(url, {method: 'GET'});
+
+    if(yanıt.status == 200)
+    {
+        let yanıtJSON = await yanıt.json();
+        let Türler = JSON.parse(yanıtJSON);
+       
+        Türler.forEach((tür) =>
+        {
+            let option = document.createElement('option');
+            option.value = tür;
+            option.text = tür;
+            BölgeTürüDropList.appendChild(option);
+        }
+        );
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        KullanıcıÇekmecesiniKapat();
+    }
+}
+
+async function KÇ_NoktaEkle_ÜstBölgeleriGetir() 
+{
+    let ÜstBölgeDropList = document.getElementById("NoktaEkle-ÜstBölge");
+    ÜstBölgeDropList.innerHTML = "";
+
+    let BölgeTürü = document.getElementById("NoktaEkle-BölgeTürü").value;
+    BölgeTürü = encodeURIComponent(BölgeTürü);
+
+    let url = `http://localhost:5130/Harita/ÜsteGelebilecekNoktalar/${BölgeTürü}`;
+    let yanıt = await fetch(url, {method: 'GET'});
+
+    if(yanıt.status == 200)
+    {
+        let yanıtJSON = await yanıt.json();
+        let Noktalar = JSON.parse(yanıtJSON);
+        
+        Noktalar.forEach((nokta) =>
+        {
+            let option = document.createElement('option');
+            option.value = nokta.kimlik;
+            option.text = nokta.Türkçe + " (" + nokta.Bulgarca_Kiril + ")";
+            ÜstBölgeDropList.appendChild(option);
+        }
+        );
+        option.value = "yok";
+        option.text = "Üst bölgesi yok.";
+        ÜstBölgeDropList.appendChild(option);
+    }
+    else if(yanıt.status == 204)
+    {
+        let option = document.createElement('option');
+        option.value = "yok";
+        option.text = "Üst bölgesi yok.";
+        ÜstBölgeDropList.appendChild(option);
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        KullanıcıÇekmecesiniKapat();
+    }
+}
 
 function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
 {   
