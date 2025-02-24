@@ -99,6 +99,8 @@ async function NoktaÇekmecesiYarat(feature)
     document.getElementById("nokta-koordinat").innerHTML = feature.geometry.coordinates[1].toFixed(6) + ", " + feature.geometry.coordinates[0].toFixed(6);
     document.getElementById("favori-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
     document.getElementById("nokta-silme-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
+    document.getElementById("nokta-duzenle-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
+    document.getElementById("nokta-kaydet-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
 
     let url = `http://localhost:5130/Favori/SatirVarMi/${encodeURIComponent(ÇerezDeğeri("KULLANICI"))}/${encodeURIComponent(feature.properties.Kimlik)}`;   
     let yanıt = await fetch(url, {method: 'POST'});

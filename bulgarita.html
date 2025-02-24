@@ -234,7 +234,7 @@
                         <div class="nokta-koordinat" id="nokta-koordinat"></div>
                     </div>
 
-                    <button class="favori-butonu" onclick="NoktaDuzenleSayfası()">Noktayı Düzenle
+                    <button class="favori-butonu" id="nokta-duzenle-butonu" onclick="NoktaDuzenleSayfası(this)" konum-kimliği="">Noktayı Düzenle
                     </button>
                 </div>
 
@@ -252,12 +252,26 @@
             </div>
             <div class="çekmece-içi" id="noktayı-duzenle-penceresi">
                 <div class="çekmece-içorta duzenle">
-
+                        <form id="Form-NoktaDuzenle" class="form-ortalı içi-bloklu">
+                            <h2>Nokta Ekle</h2>
+                            <label for="NoktaDuzenle-EnlemDerece" form="Form-NoktaDuzenle">Enlemi (Derece):</label>
+                            <input type="number" id="NoktaDuzenle-EnlemDerece" value="">
+                            <label for="NoktaDuzenle-BoylamDerece" form="Form-NoktaDuzenle">Boylamı (Derece):</label>
+                            <input type="number" id="NoktaDuzenle-BoylamDerece" value="">
+                            <label for="NoktaDuzenle-BulgarcaLatinİsim" form="Form-NoktaDuzenle">Bulgarca Latin İsmi:</label>
+                            <input type="text" id="NoktaDuzenle-BulgarcaLatinİsim" value="">
+                            <label for="NoktaDuzenle-BulgarcaKirilİsim" form="Form-NoktaDuzenle">Bulgarca Kiril İsmi:</label>
+                            <input type="text" id="NoktaDuzenle-BulgarcaKirilİsim" value="">
+                            <label for="NoktaDuzenle-Türkçeİsim" form="Form-NoktaDuzenle">Türkçe İsmi:</label>
+                            <input type="text" id="NoktaDuzenle-Türkçeİsim" value="">
+                            <label for="NoktaDuzenle-Osmanlıcaİsim" form="Form-NoktaDuzenle">Osmanlıca İsmi:</label>
+                            <input type="text" id="NoktaDuzenle-Osmanlıcaİsim" value="">
+                        </form>
                 </div>
 
                 <div class="çekmece-içalt düzenle">
-                    <button onclick="NoktaSayfası()" class="favori-butonu">Değişiklikleri Kaydet</button>
-                    <button onclick="NoktaSayfası()" class="favori-butonu">Geri Dön</button>
+                    <button class="favori-butonu" id="nokta-kaydet-butonu" konum-kimliği="" onclick="DegisiklikleriKaydet(this)">Değişiklikleri Kaydet</button>
+                    <button class="favori-butonu" onclick="NoktaSayfası()">Geri Dön</button>
                     <button class="favori-butonu" id="nokta-silme-butonu" konum-kimliği="" onclick="NoktaSil(this)">Noktayı Sil</button>
                 </div>
 

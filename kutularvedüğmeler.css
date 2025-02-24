@@ -107,6 +107,11 @@
     margin: 0% auto 4%;
 }
 
+#nokta-çekmecesi input, #nokta-çekmecesi select
+{
+    margin: 0% auto 4%;
+}
+
 .arama-çubuğu
 {
     height: 25%;

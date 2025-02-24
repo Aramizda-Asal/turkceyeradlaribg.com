@@ -660,8 +660,15 @@ async function KÇFavorilerSayfasınıDoldur()
     
 }
 
-function NoktaDuzenleSayfası()
+function NoktaDuzenleSayfası(button)
 {
+    let nokta = NoktayıGetir(button.getAttribute("konum-kimliği"))[0]
+    document.getElementById("NoktaDuzenle-EnlemDerece").value = nokta.geometry.coordinates[1];
+    document.getElementById("NoktaDuzenle-BoylamDerece").value = nokta.geometry.coordinates[0];
+    document.getElementById("NoktaDuzenle-BulgarcaLatinİsim").value = nokta.properties.BulgarcaLatin;
+    document.getElementById("NoktaDuzenle-BulgarcaKirilİsim").value = nokta.properties.BulgarcaKiril;
+    document.getElementById("NoktaDuzenle-Türkçeİsim").value = nokta.properties.Türkçe;
+    document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value = nokta.properties.Osmanlıca;
     document.getElementById("nokta-penceresi").style.display = "none";
     document.getElementById("noktayı-duzenle-penceresi").style.display = "block";
 }
@@ -670,4 +677,34 @@ function NoktaSayfası()
 {
     document.getElementById("nokta-penceresi").style.display = "block";
     document.getElementById("noktayı-duzenle-penceresi").style.display = "none";
+}
+
+function DegisiklikleriKaydet(button)
+{
+    let nokta = NoktayıGetir(button.getAttribute("konum-kimliği"))[0]
+    if(nokta.geometry[1] != document.getElementById("NoktaDuzenle-EnlemDerece").value)
+    {
+        console.log(document.getElementById("NoktaDuzenle-EnlemDerece").value)
+    }
+    if(nokta.geometry[0] != document.getElementById("NoktaDuzenle-BoylamDerece").value)
+    {
+        console.log(document.getElementById("NoktaDuzenle-BoylamDerece").value)
+    }
+    if(nokta.properties.BulgarcaLatin != document.getElementById("NoktaDuzenle-BulgarcaLatinİsim").value)
+    {
+        console.log(document.getElementById("NoktaDuzenle-BulgarcaLatinİsim").value)
+    }
+    if(nokta.properties.BulgarcaKiril != document.getElementById("NoktaDuzenle-BulgarcaKirilİsim").value)
+    {
+        console.log(document.getElementById("NoktaDuzenle-BulgarcaKirilİsim").value)
+    }
+    if(nokta.properties.Türkçe != document.getElementById("NoktaDuzenle-Türkçeİsim").value)
+    {
+        console.log(document.getElementById("NoktaDuzenle-Türkçeİsim").value)
+    }
+    if(nokta.properties.Osmanlıca != document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value)
+    {
+        console.log(document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value)
+    }
+
 }
