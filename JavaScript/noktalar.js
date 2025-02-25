@@ -102,8 +102,18 @@ async function NoktaÇekmecesiYarat(feature)
     document.getElementById("nokta-duzenle-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
     document.getElementById("nokta-kaydet-butonu").setAttribute("konum-kimliği", feature.properties.Kimlik);
 
-    let url = `http://localhost:5130/Favori/SatirVarMi/${encodeURIComponent(ÇerezDeğeri("KULLANICI"))}/${encodeURIComponent(feature.properties.Kimlik)}`;   
-    let yanıt = await fetch(url, {method: 'POST'});
+    let url = `http://localhost:5130/Favori/SatirVarMi`;   
+    let yanıt = await fetch(url, 
+        {
+            method: 'POST',
+            headers: 
+            {
+                'KULLANICI': ÇerezDeğeri("KULLANICI"),
+                'OTURUM': ÇerezDeğeri("OTURUM"),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(feature.properties.Kimlik)
+        }); 
     if (yanıt.status === 200)
     {
         FavoriButonuDoldur()
