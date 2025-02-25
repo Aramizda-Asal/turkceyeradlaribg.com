@@ -694,32 +694,70 @@ function NoktaSayfası()
     document.getElementById("noktayı-duzenle-penceresi").style.display = "none";
 }
 
-function DegisiklikleriKaydet(button)
+async function DegisiklikleriKaydet(button)
 {
+    let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");
+
     let nokta = NoktayıGetir(button.getAttribute("konum-kimliği"))[0]
+    let Degisti = false;
     if(nokta.geometry[1] != document.getElementById("NoktaDuzenle-EnlemDerece").value)
     {
-        console.log(document.getElementById("NoktaDuzenle-EnlemDerece").value)
+        nokta.geometry[1] = document.getElementById("NoktaDuzenle-EnlemDerece").value;
+        Degisti = true;
     }
     if(nokta.geometry[0] != document.getElementById("NoktaDuzenle-BoylamDerece").value)
     {
-        console.log(document.getElementById("NoktaDuzenle-BoylamDerece").value)
+        nokta.geometry[0] = document.getElementById("NoktaDuzenle-BoylamDerece").value;
+        Degisti = true;
     }
     if(nokta.properties.BulgarcaLatin != document.getElementById("NoktaDuzenle-BulgarcaLatinİsim").value)
     {
-        console.log(document.getElementById("NoktaDuzenle-BulgarcaLatinİsim").value)
+        nokta.properties.BulgarcaLatin = document.getElementById("NoktaDuzenle-BulgarcaLatinİsim").value;
+        Degisti = true;
     }
     if(nokta.properties.BulgarcaKiril != document.getElementById("NoktaDuzenle-BulgarcaKirilİsim").value)
     {
-        console.log(document.getElementById("NoktaDuzenle-BulgarcaKirilİsim").value)
+        nokta.properties.BulgarcaKiril = document.getElementById("NoktaDuzenle-BulgarcaKirilİsim").value;
+        Degisti = true;
     }
     if(nokta.properties.Türkçe != document.getElementById("NoktaDuzenle-Türkçeİsim").value)
     {
-        console.log(document.getElementById("NoktaDuzenle-Türkçeİsim").value)
+        nokta.properties.Türkçe = document.getElementById("NoktaDuzenle-Türkçeİsim").value;
+        Degisti = true;
     }
     if(nokta.properties.Osmanlıca != document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value)
     {
-        console.log(document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value)
+        nokta.properties.Osmanlıca = document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value;
+        Degisti = true;
+    }
+
+    if(Degisti)
+    {
+        let geri_nokta = NoktaOlusturucuGeoJSON(nokta);
+        console.log(geri_nokta);
+        let url = `http://localhost:5130/Harita/NoktaGüncelle`;  
+        
+        let yanıt = await fetch(url, 
+            {
+                method: 'PUT',
+                headers: 
+                {
+                    'KULLANICI': kullanıcı_kimliği,
+                    'OTURUM': oturum_kimliği,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(geri_nokta)
+            }); 
+        if (yanıt.status === 200)
+        {
+            alert("Degisti")
+            FavoriButonuDoldur();
+        }
+        else
+        {
+            alert("Degismedi");
+        }
     }
 
 }
