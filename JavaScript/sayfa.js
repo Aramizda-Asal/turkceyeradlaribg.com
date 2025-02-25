@@ -100,15 +100,22 @@ function FavoriButonuBosalt()
 async function FavorilereEkle(button)
 {
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");
     let konum_kimliği = button.getAttribute('konum-kimliği');
 
-    kullanıcı_kimliği = encodeURIComponent(kullanıcı_kimliği);
-    konum_kimliği = encodeURIComponent(konum_kimliği);
-    
-    let url = `http://localhost:5130/Favori/FavoriEkle/${kullanıcı_kimliği}/${konum_kimliği}`;   
+    let url = `http://localhost:5130/Favori/FavoriEkle`;   
 
-    let yanıt = await fetch(url, {method: 'POST'});
-
+    let yanıt = await fetch(url, 
+        {
+            method: 'POST',
+            headers: 
+            {
+                'KULLANICI': kullanıcı_kimliği,
+                'OTURUM': oturum_kimliği,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(konum_kimliği)
+        }); 
     if (yanıt.status === 201)
     {
         alert("Eklendi")
@@ -123,13 +130,21 @@ async function FavorilereEkle(button)
 async function FavorilerdenCikar(button)
 {
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");
     let konum_kimliği = button.getAttribute('konum-kimliği');
 
-    kullanıcı_kimliği = encodeURIComponent(kullanıcı_kimliği);
-    konum_kimliği = encodeURIComponent(konum_kimliği);
-
-    let url = `http://localhost:5130/Favori/FavorilerdenCikar/${kullanıcı_kimliği}/${konum_kimliği}`;
-    let yanıt = await fetch(url, {method: 'DELETE'});
+    let url = `http://localhost:5130/Favori/FavorilerdenCikar`;
+    let yanıt = await fetch(url, 
+        {
+            method: 'DELETE',
+            headers: 
+            {
+                'KULLANICI': kullanıcı_kimliği,
+                'OTURUM': oturum_kimliği,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(konum_kimliği)
+        }); 
 
     if (yanıt.status === 201)
     {
