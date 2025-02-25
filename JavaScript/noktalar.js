@@ -15,9 +15,18 @@ class Nokta
     }
 }
 
+function NoktaOlusturucuGeoJSON(geoJSONNokta)
+{
+    let nokta = new Nokta(geoJSONNokta.properties.BulgarcaLatin, geoJSONNokta.properties.BulgarcaKiril, geoJSONNokta.properties.Türkçe, 
+                            geoJSONNokta.properties.Osmanlıca, geoJSONNokta.geometry.coordinates[1], geoJSONNokta.geometry.coordinates[0], 
+                            geoJSONNokta.properties.BolgeTuru, geoJSONNokta.properties.UstBolge, geoJSONNokta.properties.Kimlik)
+    
+    return nokta;
+}
+
 class Feature
 {
-    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca, enlem, boylam, bolge_turu, kimlik)
+    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca, enlem, boylam, bolge_turu, ust_bolge, kimlik)
     {
         this.type = "Feature";
         this.properties = {};
@@ -26,6 +35,7 @@ class Feature
         this.properties["Türkçe"] = Türkçe;
         this.properties["Osmanlıca"] = Osmanlıca;
         this.properties["BolgeTuru"] = bolge_turu;
+        this.properties["UstBolge"] = ust_bolge;
         this.properties["Kimlik"] = kimlik;
         this.geometry = {};
         this.geometry["type"] = "Point";
@@ -85,7 +95,7 @@ async function NoktalarıÇek()
     {
         let enlem = parseFloat(responsejs[i][0]);
         let boylam = parseFloat(responsejs[i][1]);
-        Noktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam, responsejs[i][6], responsejs[i][8]));
+        Noktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam, responsejs[i][6], responsejs[i][7], responsejs[i][8]));
     }
 }
 
