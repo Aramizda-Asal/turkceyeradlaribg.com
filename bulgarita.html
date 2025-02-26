@@ -106,6 +106,7 @@
                             KÇ_NoktaEkle_GirdileriBoşalt();">Nokta Ekle</button>
                         <button class="D1-turkuaz butonlar-profil" onclick="KÇRolAtaSayfası()">Rol Ata</button>
                         <button class="D1-turkuaz butonlar-profil" onclick="KÇRolAlSayfası()">Rol Al</button>
+                        <button class="D1-turkuaz butonlar-profil" onclick="KÇKullanıcıSilSayfası()">Kullanıcı Sil</button>
                     </div>
 
                     <div id="kişisel-çekmece-ayarlar" class="kişisel-çekmece-sayfası">
@@ -175,7 +176,7 @@
 
                             <input type="button" class="D1-turkuaz" value="Noktayı Haritaya Ekle" onclick="NoktaEkle()" />
                         </form>
-                    
+
                     </div>
 
                     <div id="kişisel-çekmece-RolAta" class="kişisel-çekmece-sayfası">
@@ -206,6 +207,18 @@
                             <input type="button" class="D1-turkuaz" value="Rolü Kullanıcıdan Al" onclick="KÇ_RolAl()" />
                         </form>
                     
+                    </div>
+
+                    <div id="kişisel-çekmece-KullanıcıSil" class="kişisel-çekmece-sayfası">
+                        <button class="D1-turkuaz butonlar-profil" onclick="KÇAnaSayfa()">Başa Dön</button>      
+                        
+                        <form id="Form-Kullanıcı Sil" class="form-ortalı içi-bloklu">
+                            <h2>Kullanıcı Sil</h2>
+                            <label for="KullanıcıSil-Kullanıcı" form="Form-RolAl">Kullanıcının Adı:</label>
+                            <input type="text" id="KullanıcıSil-Kullanıcı">
+
+                            <input type="button" class="D1-turkuaz" value="Kullanıcıyı Sil" onclick="KÇKullanıcıSil()"/>
+                        </form>
                     </div>
 
                 </div>
