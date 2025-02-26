@@ -686,6 +686,45 @@ async function KÇFavorilerSayfasınıDoldur()
     
 }
 
+function KÇKullanıcıSilSayfası()
+{
+    KişiselÇekmeceSayfalarınıKapat();
+    let ayarlar_sayfası = document.getElementById("kişisel-çekmece-KullanıcıSil");
+    if (ayarlar_sayfası !== null)
+    {
+        ayarlar_sayfası.style.display = "block";
+    }
+}
+
+async function KÇKullanıcıSil()
+{
+    let silinecek_kullanıcı = document.getElementById("KullanıcıSil-Kullanıcı").value;
+    console.log(silinecek_kullanıcı);
+    let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
+    let oturum_kimliği = ÇerezDeğeri("OTURUM");
+    let url = `http://localhost:5130/Kullanıcı/KullanıcıSil`;
+    let yanıt = await fetch(url, 
+        {
+            method: 'DELETE',
+            headers: 
+            {
+                'KULLANICI': kullanıcı_kimliği,
+                'OTURUM': oturum_kimliği,
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify(silinecek_kullanıcı)
+        })
+
+    if(yanıt.status === 200)
+    {
+        alert("sildim");
+    }
+    else
+    {
+        alert("silemedim");
+    }
+}
+
 function NoktaDuzenleSayfası(button)
 {
     let nokta = NoktayıGetir(button.getAttribute("konum-kimliği"))[0]
