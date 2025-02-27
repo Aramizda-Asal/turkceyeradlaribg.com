@@ -26,6 +26,12 @@
     border-color: #bdf4ef;
     color: #158479;
 }
+.D1-turkuaz:disabled
+{
+    background-color: #30a89c;
+    border-color: #30a89c;
+    color: #072c28;
+}
 
 .D1-kızıl
 {

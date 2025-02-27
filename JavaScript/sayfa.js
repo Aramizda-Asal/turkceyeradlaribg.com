@@ -236,6 +236,17 @@ function KÇKullanıcıAdıDeğiştirSayfası()
         KullanıcıAdıDeğiştir_sayfası.style.display = "block";
     }
 }
+
+function DüğmeleriEtkisizBırak(düğmeID)
+{
+    document.getElementById(düğmeID).disabled = true;
+}
+
+function DüğmeleriEtkinleştir(düğmeID)
+{
+    document.getElementById(düğmeID).disabled = false;
+}
+
 /**
  * Kişisel kullanıcı çekmecesinin görünümünü nokta ekleme sayfası yapar.
  */
@@ -364,6 +375,8 @@ async function KÇ_KullanıcıAra(girdi, divID, inputID)
                         break;
                     case "RolAl-Kullanıcı":
                         KÇ_RolAL_RolleriGetir();
+                    case "KullanıcıSil-Kullanıcı":
+                        DüğmeleriEtkinleştir("KullanıcıSil_Düğme");
                 }
             };
             div.appendChild(button);
@@ -425,6 +438,7 @@ async function KÇ_RolAta_RolleriGetir()
             let option = document.createElement('option');
             option.value = rol;
             option.text = rol;
+            option.onselect = DüğmeleriEtkinleştir('RolAta_Düğme');
             RollerDropList.appendChild(option);
         }
         );
@@ -533,6 +547,7 @@ async function KÇ_RolAL_RolleriGetir()
             let option = document.createElement('option');
             option.value = rol;
             option.text = rol;
+            option.onselect = DüğmeleriEtkinleştir('RolAl_Düğme');
             RollerDropList.appendChild(option);
         }
         );

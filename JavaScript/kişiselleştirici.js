@@ -175,13 +175,13 @@ async function RoleGöreÖgeleriYarat()
     {
         let RolAtaDüğmesi = document.createElement("button");
         RolAtaDüğmesi.setAttribute("class", "D1-turkuaz butonlar-profil role-bağlı");
-        RolAtaDüğmesi.setAttribute("onclick", "KÇRolAtaSayfası()");
+        RolAtaDüğmesi.setAttribute("onclick", "KÇRolAtaSayfası(); " + "DüğmeleriEtkisizBırak('RolAta_Düğme')");
         RolAtaDüğmesi.innerHTML = "Rol Ata";
         ana_sayfa.appendChild(RolAtaDüğmesi);
 
         let RolAlDüğmesi = document.createElement("button");
         RolAlDüğmesi.setAttribute("class", "D1-turkuaz butonlar-profil role-bağlı");
-        RolAlDüğmesi.setAttribute("onclick", "KÇRolAlSayfası()");
+        RolAlDüğmesi.setAttribute("onclick", "KÇRolAlSayfası(); " + "DüğmeleriEtkisizBırak('RolAl_Düğme')");
         RolAlDüğmesi.innerHTML = "Rol Al";
         ana_sayfa.appendChild(RolAlDüğmesi);
     }
@@ -201,7 +201,7 @@ async function RoleGöreÖgeleriYarat()
     {
         let KullanıcıSilDüğmesi = document.createElement("button");
         KullanıcıSilDüğmesi.setAttribute("class", "D1-turkuaz butonlar-profil role-bağlı");
-        KullanıcıSilDüğmesi.setAttribute("onclick", "KÇKullanıcıSilSayfası()");
+        KullanıcıSilDüğmesi.setAttribute("onclick", "KÇKullanıcıSilSayfası(); "+ "DüğmeleriEtkisizBırak('KullanıcıSil_Düğme')");
         KullanıcıSilDüğmesi.innerHTML = "Kullanıcı Sil";
         ana_sayfa.appendChild(KullanıcıSilDüğmesi);
     }
