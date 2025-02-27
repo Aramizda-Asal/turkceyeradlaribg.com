@@ -347,57 +347,65 @@ async function KÇ_KullanıcıAra(girdi, divID, inputID)
 {
     let div = document.getElementById(divID);
     div.innerHTML = "";
-    div.style.display = "block";
 
-    girdi = encodeURIComponent(girdi);
-
-    let url = `http://localhost:5130/Kullanıcı/KullanıcıAra/${girdi}`;
-    let yanıt = await fetch(url, {method: 'GET'});
-    console.log("fonksiyon");
-    if(yanıt.status == 200)
+    if(girdi != null && girdi != "")
     {
-        console.log("200");
-        let yanıtJSON = await yanıt.json();
-        let Kullanıcılar = JSON.parse(yanıtJSON);
-        
-        Kullanıcılar.forEach((kullanıcı) =>
+        div.style.display = "block";
+        girdi = encodeURIComponent(girdi);
+
+        let url = `http://localhost:5130/Kullanıcı/KullanıcıAra/${girdi}`;
+        let yanıt = await fetch(url, {method: 'GET'});
+        console.log("fonksiyon");
+        if(yanıt.status == 200)
         {
-            let button = document.createElement('div');
-            button.innerText = kullanıcı;
-            button.className = "KullanıcıAraÇekmece-satır";
-            button.onclick = function ()
+            console.log("200");
+            let yanıtJSON = await yanıt.json();
+            let Kullanıcılar = JSON.parse(yanıtJSON);
+            
+            Kullanıcılar.forEach((kullanıcı) =>
             {
-                div.style.display = "none";
-                let kullanıcıInput = document.getElementById(inputID);
-                kullanıcıInput.value = kullanıcı;
-                switch(inputID)
+                let button = document.createElement('div');
+                button.innerText = kullanıcı;
+                button.className = "KullanıcıAraÇekmece-satır";
+                button.onclick = function ()
                 {
-                    case "RolAta-Kullanıcı":
-                        KÇ_RolAta_RolleriGetir();
-                        break;
-                    case "RolAl-Kullanıcı":
-                        KÇ_RolAL_RolleriGetir();
-                    case "KullanıcıSil-Kullanıcı":
-                        DüğmeleriEtkinleştir("KullanıcıSil_Düğme");
-                }
-            };
+                    div.style.display = "none";
+                    let kullanıcıInput = document.getElementById(inputID);
+                    kullanıcıInput.value = kullanıcı;
+                    switch(inputID)
+                    {
+                        case "RolAta-Kullanıcı":
+                            KÇ_RolAta_RolleriGetir();
+                            break;
+                        case "RolAl-Kullanıcı":
+                            KÇ_RolAL_RolleriGetir();
+                        case "KullanıcıSil-Kullanıcı":
+                            DüğmeleriEtkinleştir("KullanıcıSil_Düğme");
+                    }
+                };
+                div.appendChild(button);
+            }
+            );
+        }
+        else if(yanıt.status == 204)
+        {
+            console.log("204");
+            let button = document.createElement('div');
+            button.innerText = "Kullanıcı yok.";
+            button.className = "KullanıcıAraÇekmece-satır";
             div.appendChild(button);
         }
-        );
-    }
-    else if(yanıt.status == 204)
-    {
-        console.log("204");
-        let button = document.createElement('div');
-        button.innerText = "Kullanıcı yok.";
-        button.className = "KullanıcıAraÇekmece-satır";
-        div.appendChild(button);
+        else
+        {
+            alert("Beklenmeyen bir hatayla karşılaşıldı.");
+            KullanıcıÇekmecesiniKapat();
+        }
     }
     else
     {
-        alert("Beklenmeyen bir hatayla karşılaşıldı.");
-        KullanıcıÇekmecesiniKapat();
+        div.style.display = "none";
     }
+    
 }
 
 /**
@@ -411,6 +419,9 @@ function KÇRolAtaSayfası()
     {
         RolAta_sayfası.style.display = "block";
     }
+
+    document.getElementById("RolAta-Kullanıcı").value = "";
+    document.getElementById("RolAta-Rol").innerHTML = "";
 }
 
 async function KÇ_RolAta_RolleriGetir()
@@ -520,6 +531,9 @@ function KÇRolAlSayfası()
     {
         RolAl_sayfası.style.display = "block";
     }
+
+    document.getElementById("RolAl-Kullanıcı").value = "";
+    document.getElementById("RolAl-Rol").innerHTML = "";
 }
 
 async function KÇ_RolAL_RolleriGetir()
@@ -768,6 +782,8 @@ function KÇKullanıcıSilSayfası()
     {
         ayarlar_sayfası.style.display = "block";
     }
+
+    document.getElementById("KullanıcıSil-Kullanıcı").value = "";
 }
 
 async function KÇKullanıcıSil()
