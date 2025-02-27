@@ -109,6 +109,19 @@ function KişiseldenAnonime()
 }
 
 /**
+ * Yetki gerektiren sayfa ögelerini siler.
+ */
+async function RoleGöreÖgeleriYokEt()
+{
+    let role_göre = document.getElementsByClassName("role-bağlı");
+
+    for (öge of role_göre)
+    {
+        öge.remove();
+    }
+}
+
+/**
  * Yetki gerektiren sayfa ögelerini oluşturur.
  */
 async function RoleGöreÖgeleriYarat()
@@ -142,7 +155,7 @@ async function RoleGöreÖgeleriYarat()
         let NoktaEkleDüğmesi = document.createElement("button");
         NoktaEkleDüğmesi.setAttribute("class", "D1-turkuaz butonlar-profil role-bağlı");
         NoktaEkleDüğmesi.setAttribute("onclick", "KÇNoktaEkleSayfası(); " +
-            "KÇ_NoktaEkle_BölgeTürleriniGetir(); KÇ_NoktaEkle_ÜstBölgeleriGetir()");
+            "KÇ_NoktaEkle_BölgeTürleriniGetir();");
         NoktaEkleDüğmesi.innerHTML = "Nokta Ekle";
         ana_sayfa.appendChild(NoktaEkleDüğmesi);
     }
@@ -193,8 +206,9 @@ async function RoleGöreÖgeleriYarat()
         ana_sayfa.appendChild(KullanıcıSilDüğmesi);
     }
 
+    let NoktaÇekmecesi = document.getElementById("nokta-çekmecesi");
     let NoktaPenceresiİçi = document.getElementById("nokta-penceresi-içorta");
-    if (NoktaPenceresiİçi === null)
+    if (NoktaÇekmecesi === null || NoktaPenceresiİçi === null)
     {
         return;
     }
@@ -219,18 +233,36 @@ async function RoleGöreÖgeleriYarat()
         NoktaDüzenleDüğmesi.setAttribute("konum-kimliği", "");
         NoktaDüzenleDüğmesi.innerHTML = "Noktayı Düzenle";
         NoktaPenceresiİçi.appendChild(NoktaDüzenleDüğmesi);
-    }
-}
 
-/**
- * Yetki gerektiren sayfa ögelerini siler.
- */
-async function RoleGöreÖgeleriYokEt()
-{
-    let role_göre = document.getElementsByClassName("role-bağlı");
+        let dış = document.createElement("div");
+        dış.setAttribute("class", "çekmece-içi role-bağlı");
+        dış.setAttribute("id", "noktayı-duzenle-penceresi");
 
-    for (öge of role_göre)
-    {
-        öge.remove();
+        let iç = `<div class="çekmece-içorta duzenle">\n` +
+            `<form id="Form-NoktaDuzenle" class="form-ortalı içi-bloklu">\n` +
+            `<h2>Nokta Ekle</h2>\n` +
+            `<label for="NoktaDuzenle-EnlemDerece" form="Form-NoktaDuzenle">Enlemi (Derece):</label>\n` +
+            `<input type="number" id="NoktaDuzenle-EnlemDerece" value=""/>\n` +
+            `<label for="NoktaDuzenle-BoylamDerece" form="Form-NoktaDuzenle">Boylamı (Derece):</label>\n` +
+            `<input type="number" id="NoktaDuzenle-BoylamDerece" value=""/>\n` +
+            `<label for="NoktaDuzenle-BulgarcaLatinİsim" form="Form-NoktaDuzenle">Bulgarca Latin İsmi:</label>\n` +
+            `<input type="text" id="NoktaDuzenle-BulgarcaLatinİsim" value=""/>\n` +
+            `<label for="NoktaDuzenle-BulgarcaKirilİsim" form="Form-NoktaDuzenle">Bulgarca Kiril İsmi:</label>\n` +
+            `<input type="text" id="NoktaDuzenle-BulgarcaKirilİsim" value=""/>\n` +
+            `<label for="NoktaDuzenle-Türkçeİsim" form="Form-NoktaDuzenle">Türkçe İsmi:</label>\n` +
+            `<input type="text" id="NoktaDuzenle-Türkçeİsim" value=""/>\n` +
+            `<label for="NoktaDuzenle-Osmanlıcaİsim" form="Form-NoktaDuzenle">Osmanlıca İsmi:</label>\n` +
+            `<input type="text" id="NoktaDuzenle-Osmanlıcaİsim" value=""/>\n` +
+            `</form>\n` +
+            `</div>\n` +
+            `\n` +
+            `<div class="çekmece-içalt düzenle">\n` +
+            `<button class="favori-butonu" id="nokta-kaydet-butonu" konum-kimliği="" onclick="DegisiklikleriKaydet(this)">Değişiklikleri Kaydet</button>\n` +
+            `<button class="favori-butonu" onclick="NoktaSayfası()">Geri Dön</button>\n` +
+            `<button class="favori-butonu" id="nokta-silme-butonu" konum-kimliği="" onclick="NoktaSil(this)">Noktayı Sil</button>\n` +
+            `</div>\n`;
+        dış.innerHTML = iç;
+
+        NoktaÇekmecesi.appendChild(dış);
     }
 }

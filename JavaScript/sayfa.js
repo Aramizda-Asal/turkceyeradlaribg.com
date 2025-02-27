@@ -286,7 +286,7 @@ async function KÇ_NoktaEkle_ÜstBölgeleriGetir()
     let BölgeTürü = document.getElementById("NoktaEkle-BölgeTürü").value;
     BölgeTürü = encodeURIComponent(BölgeTürü);
 
-    let url = `http://localhost:5130/Harita/ÜsteGelebilecekNoktalar/${BölgeTürü}`;
+    let url = `http://localhost:5130/Harita/ÜsteGelebilecekNoktalar/${BölgeTürü}/`;
     let yanıt = await fetch(url, {method: 'GET'});
 
     if(yanıt.status == 200)
