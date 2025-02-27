@@ -12,17 +12,29 @@ function Kaydol()
                 if(response.status === 201)
                 {
                     alert("Kayit Olundu")
+                    Göster_GirişYap();
+                    KaydoluBosalt();
                 }
                 else
                 {
                     alert("Kayit Olunamadı")
+                    KaydoluBosalt();
                 }
             })
     }
     else
     {
         alert("Kayit Olunamadı")
+        KaydoluBosalt();
     }
+}
+
+function KaydoluBosalt()
+{
+    document.getElementById("kullanıcıadı-kayıt").value = "";
+    document.getElementById("eposta-kayıt").value = "";
+    document.getElementById("parola-kayıt").value = "";
+    document.getElementById("parola-kayıt-tekrar").value = "";
 }
 
 async function GirişYap()

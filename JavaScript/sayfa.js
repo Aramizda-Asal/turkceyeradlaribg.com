@@ -36,6 +36,7 @@ function KullanıcıÇekmecesiniKapat()
     document.getElementById("kullanıcı-çekmecesi").style.transform = "none";
     document.getElementById("kapatıcı").style.display = "none";
     kullanıcı_çekmecesi_açık = false;
+    KaydoluBosalt();
 }
 
 let nokta_çekmecesi_açık = false;
@@ -172,6 +173,7 @@ function Göster_GirişYap()
     document.getElementById("kullanıcı-çekmecesi-başlık").innerHTML = "Giriş Yap";
     document.getElementById("kayıt-ol").style.display = "none";
     document.getElementById("giriş-yap").style.display = "block";
+    KaydoluBosalt();
 }
 
 /**
