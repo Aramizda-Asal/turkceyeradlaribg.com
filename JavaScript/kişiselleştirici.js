@@ -10,26 +10,26 @@ let şimdi_kullanan = null;
 async function Açılış()
 {
     await OturumAçık();
-    ArayüzüKişiselleştir();
+    await ArayüzüKişiselleştir();
 }
 
 /**
  * Oturum durumuna bağlı olarak kullanıcı arayüzünü düzenleyen
  * diğer fonksiyonları çağırır.
  */
-function ArayüzüKişiselleştir()
+async function ArayüzüKişiselleştir()
 {
-    KullanıcıÇekmecesiniKişiselleştir();
+    await KullanıcıÇekmecesiniKişiselleştir();
 }
 
 /**
  * Oturum durumuna bağlı olarak kullanıcı çekmecesinin içeriğini düzenler.
  */
-function KullanıcıÇekmecesiniKişiselleştir()
+async function KullanıcıÇekmecesiniKişiselleştir()
 {
     if (şimdi_kullanan !== null)
     {
-        AnonimdenKişisele();
+        await AnonimdenKişisele();
 
         document.getElementById("kullanıcı-çekmecesi-başlık").innerText = şimdi_kullanan.Adı;
 
@@ -37,7 +37,7 @@ function KullanıcıÇekmecesiniKişiselleştir()
     }
     else
     {
-        KişiseldenAnonime();
+        await KişiseldenAnonime();
 
         if (KaydolBölümüAçık)
         {
@@ -54,7 +54,7 @@ function KullanıcıÇekmecesiniKişiselleştir()
  * Anonim bölgeleri kapatır ve kişisel bölgeleri açar.  
  * Çoğu zaman, geçerli bir oturum başlarken kullanılmalıdır.
  */
-function AnonimdenKişisele()
+async function AnonimdenKişisele()
 {
     let anonim_bölgeler = document.getElementsByClassName("anonim-bölge");
     let kişisel_bölgeler = document.getElementsByClassName("kişisel-bölge");
@@ -75,7 +75,7 @@ function AnonimdenKişisele()
         }
     }
 
-    RoleGöreÖgeleriYarat();
+    await RoleGöreÖgeleriYarat();
 
     KÇAnaSayfa();
 }
@@ -84,9 +84,9 @@ function AnonimdenKişisele()
  * Kişisel bölgeleri kapatır ve anonim bölgeleri açar.  
  * Çoğu zaman, oturum sonlanırken kullanılmalıdır.
  */
-function KişiseldenAnonime()
+async function KişiseldenAnonime()
 {
-    RoleGöreÖgeleriYokEt();
+    await RoleGöreÖgeleriYokEt();
 
     let anonim_bölgeler = document.getElementsByClassName("anonim-bölge");
     let kişisel_bölgeler = document.getElementsByClassName("kişisel-bölge");
@@ -115,9 +115,9 @@ async function RoleGöreÖgeleriYokEt()
 {
     let role_göre = document.getElementsByClassName("role-bağlı");
 
-    for (öge of role_göre)
+    while (role_göre.length > 0)
     {
-        öge.remove();
+        role_göre[0].remove();
     }
 }
 
