@@ -330,6 +330,53 @@ function KÇ_NoktaEkle_GirdileriBoşalt()
     }
 }
 
+async function KÇ_KullanıcıAra(girdi, divID)
+{
+    let div = document.getElementById(divID);
+    div.innerHTML = "";
+    div.style.display = "block";
+
+    let url = `http://localhost:5130/Kullanıcı/KullanıcıAra/${girdi}`;
+    let yanıt = await fetch(url, {method: 'GET'});
+    console.log("fonksiyon");
+    if(yanıt.status == 200)
+    {
+        console.log("200");
+        let yanıtJSON = await yanıt.json();
+        let Kullanıcılar = JSON.parse(yanıtJSON);
+        
+        Kullanıcılar.forEach((kullanıcı) =>
+        {
+            let button = document.createElement('div');
+            button.innerText = kullanıcı;
+            button.className = "KullanıcıAraÇekmece-satır";
+            button.onclick = function ()
+            {
+                div.style.display = "none";
+                let kullanıcıInput = document.getElementById("RolAta-Kullanıcı");
+                kullanıcıInput.value = kullanıcı;
+                KÇ_RolAta_RolleriGetir();
+
+            };
+            div.appendChild(button);
+        }
+        );
+    }
+    else if(yanıt.status == 204)
+    {
+        console.log("204");
+        let button = document.createElement('div');
+        button.innerText = "Kullanıcı yok.";
+        button.className = "KullanıcıAraÇekmece-satır";
+        div.appendChild(button);
+    }
+    else
+    {
+        alert("Beklenmeyen bir hatayla karşılaşıldı.");
+        KullanıcıÇekmecesiniKapat();
+    }
+}
+
 /**
  * Kişisel kullanıcı çekmecesinin görünümünü rol atama sayfası yapar.
  */

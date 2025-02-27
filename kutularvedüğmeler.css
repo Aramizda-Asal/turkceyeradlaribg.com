@@ -223,3 +223,35 @@
     font-size: inherit;
     vertical-align: middle;
 }
+
+.KullanıcıAraÇekmece
+{
+    display: none;
+    text-align: left;
+    font-size: medium;
+    font-weight: bold;
+    outline: none;
+    color: #158479;
+    background-color: azure;
+    border: 3px solid azure;
+    border-radius: 9px;
+    padding: 0.2em 0;
+    margin: 0 21% 2%;
+}
+
+.KullanıcıAraÇekmece-satır
+{
+    background-color: transparent;
+    padding: 1% 4%;
+}
+
+.KullanıcıAraÇekmece-satır:hover
+{
+    background-color: rgb(227, 240, 240);
+    color: #12766c;
+}
+
+#RolAta-Kullanıcı
+{
+    margin-bottom: 1% !important;
+}
