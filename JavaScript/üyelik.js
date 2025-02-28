@@ -62,7 +62,7 @@ async function GirişYap()
     document.getElementById("kullanıcıadı-giriş").value = "";
     document.getElementById("parola-giriş").value = "";
 
-    ArayüzüKişiselleştir();
+    await ArayüzüKişiselleştir();
 }
 async function ÇıkışYap()
 {
