@@ -148,7 +148,7 @@ async function FavorilerdenCikar(button)
             body: JSON.stringify(konum_kimliği)
         }); 
 
-    if (yanıt.status === 201)
+    if (yanıt.status === 200)
     {
         alert("Cikarildi")
         FavoriButonuBosalt();

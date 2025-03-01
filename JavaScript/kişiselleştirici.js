@@ -302,5 +302,8 @@ function FavoriButonuYarat()
 
 function FavoriButonuYokEt()
 {
-    document.getElementById("favori-butonu").remove();
+    if(document.getElementById("favori-butonu") != null)
+    {
+        document.getElementById("favori-butonu").remove();
+    }
 }

@@ -245,7 +245,7 @@ async function NoktaÇekmecesiYarat(feature)
     {
         FavoriButonuDoldur()
     }
-    else
+    else if(yanıt.status === 404)
     {
         FavoriButonuBosalt()
     }
