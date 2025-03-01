@@ -75,6 +75,8 @@ async function AnonimdenKişisele()
         }
     }
 
+    FavoriButonuYarat();
+
     await RoleGöreÖgeleriYarat();
 
     KÇAnaSayfa();
@@ -86,6 +88,8 @@ async function AnonimdenKişisele()
  */
 async function KişiseldenAnonime()
 {
+    FavoriButonuYokEt();
+
     await RoleGöreÖgeleriYokEt();
 
     let anonim_bölgeler = document.getElementsByClassName("anonim-bölge");
@@ -264,5 +268,42 @@ async function RoleGöreÖgeleriYarat()
         dış.innerHTML = iç;
 
         NoktaÇekmecesi.appendChild(dış);
+    }
+}
+
+
+function FavoriButonuYarat()
+{
+    let div = document.getElementById('nokta-çekmece-içalt');
+
+    let button = document.createElement('button');
+    button.className = "favori-butonu";
+    button.id = "favori-butonu";
+    button.konum_kimliği = "";
+
+    let span1 = document.createElement('span');
+    span1.id = "favori-resmi";
+    span1.innerHTML = "&#x2606;";
+
+    let span2 = document.createElement('span');
+    span2.id = "favori-yazisi";
+    span2.innerHTML = "Favorilere Ekle";
+
+    button.appendChild(span1);
+    button.appendChild(span2);
+
+    button.onclick = function () 
+    {
+        FavorilereEkle(this);
+    };
+
+    div.appendChild(button);
+}
+
+function FavoriButonuYokEt()
+{
+    if(document.getElementById("favori-butonu") != null)
+    {
+        document.getElementById("favori-butonu").remove();
     }
 }
