@@ -40,51 +40,6 @@ NoktalarıBaşlat()
 //Burası ters çalışıyor nedenini anlamadım anlamamaya devam ediyorum kolay gelsin.
 map.on (
     {
-        zoomend: function () 
-        {
-            /*
-            if (map.getZoom() <= 8) 
-            {
-                if(!map.hasLayer(SehirKatmani))
-                {
-                    map.addLayer(SehirKatmani);
-                }
-
-                map.removeLayer(KasabaKatmani);
-                map.removeLayer(KöyKatmanları[0][0]);
-                map.removeLayer(KöyKatmanları[0][1]);
-                map.removeLayer(KöyKatmanları[1][0]);
-                map.removeLayer(KöyKatmanları[1][1]);
-            
-            } 
-            else
-            {
-                map.removeLayer(SehirKatmani);
-
-                if(!map.hasLayer(KasabaKatmani))
-                {
-                    map.addLayer(KasabaKatmani);
-                }
-
-                if(!map.hasLayer(KöyKatmanları[0][0]))
-                {
-                    map.addLayer(KöyKatmanları[0][0])
-                }
-                if(!map.hasLayer(KöyKatmanları[0][1]))
-                {
-                    map.addLayer(KöyKatmanları[0][1])
-                }
-                if(!map.hasLayer(KöyKatmanları[1][0]))
-                {
-                    map.addLayer(KöyKatmanları[1][0])
-                }
-                if(!map.hasLayer(KöyKatmanları[1][0]))
-                {
-                    map.addLayer(KöyKatmanları[0][1])
-                }
-  
-            }*/
-        },
         moveend: function ()
         {
             let sınırlar = map.getBounds();
@@ -92,7 +47,6 @@ map.on (
             let doğu = sınırlar._northEast.lng;
             let güney = sınırlar._southWest.lat;
             let kuzey = sınırlar._northEast.lat;
-            console.log(`${batı}-${doğu}\t${güney}-${kuzey}`);
 
             let batı_sıra = 0;
             let doğu_sıra = 0;
@@ -112,8 +66,6 @@ map.on (
                     batı_sıra = Math.floor(yatay_batı_fark / yatay_aralık);
                 }
             }
-            //if (doğu_sıra >= KöyKatmanları[0].length)
-            //    doğu_sıra = KöyKatmanları[0].length - 1;
             
             let dikey_güney_fark = kuzey_uç - güney;
             if (dikey_güney_fark > 0)
@@ -128,10 +80,6 @@ map.on (
                     kuzey_sıra = Math.floor(dikey_kuzey_fark / dikey_aralık);
                 }
             }
-            //if (güney_sıra >= KöyKatmanları.length)
-            //    güney_sıra = KöyKatmanları.length - 1;
-
-            console.log(`batı:${batı_sıra}, doğu:${doğu_sıra}, kuzey:${kuzey_sıra}, güney:${güney_sıra}`);
 
             if (map.getZoom() <= 10)
             {

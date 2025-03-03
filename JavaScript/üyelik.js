@@ -183,7 +183,6 @@ async function KullanıcıAdıDeğiştir()
 
         let url = `${adres}Kullanıcı/KullanıcıAdıDeğiştir/${kullanıcı_kimliği}/` +
                   `${giden_parola}/${giden_yeni}/`;
-        console.log(url);
         let yanıt = await fetch(url, {method: "PATCH"});
 
         if (yanıt.status == 200)

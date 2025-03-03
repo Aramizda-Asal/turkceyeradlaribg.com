@@ -124,115 +124,6 @@ function KöyNoktaKaresiBul(feature)
     return kareler;
 }
 
-function KöyNoktaKaresiBul_eski(feature)
-{
-    let baslangic = güney_uç;
-    let artis = dikey_aralık;
-    console.log(baslangic + artis*8)
-    let DikeyKare;
-    let YatayKare;
-
-    if(baslangic <= feature.geometry.coordinates[1] && feature.geometry.coordinates[1]< baslangic + artis)
-    {
-        DikeyKare = 7;
-        YatayKare = KöyNoktaYatayKaresiBul(feature);
-    }
-    else if(baslangic + artis <= feature.geometry.coordinates[1] && feature.geometry.coordinates[1]< baslangic + artis*2)
-    {
-        DikeyKare = 6;
-        YatayKare = KöyNoktaYatayKaresiBul(feature);
-    }
-    else if(baslangic + artis*2 <= feature.geometry.coordinates[1] && feature.geometry.coordinates[1]< baslangic + artis*3)
-    {
-        DikeyKare = 5;
-        YatayKare = KöyNoktaYatayKaresiBul(feature);
-    }
-    else if(baslangic + artis*3 <= feature.geometry.coordinates[1] && feature.geometry.coordinates[1]< baslangic + artis*4)
-    {
-        DikeyKare = 4;
-        YatayKare = KöyNoktaYatayKaresiBul(feature);
-    }
-    else if(baslangic + artis*4 <= feature.geometry.coordinates[1] && feature.geometry.coordinates[1]< baslangic + artis*5)
-    {
-        DikeyKare = 3;
-        YatayKare = KöyNoktaYatayKaresiBul(feature);
-    }
-    else if(baslangic + artis*5 <= feature.geometry.coordinates[1] && feature.geometry.coordinates[1]< baslangic + artis*6)
-    {
-        DikeyKare = 2;
-        YatayKare = KöyNoktaYatayKaresiBul(feature);
-    }
-    else if(baslangic + artis*6 <= feature.geometry.coordinates[1] && feature.geometry.coordinates[1]< baslangic + artis*7)
-    {
-        DikeyKare = 1;
-        YatayKare = KöyNoktaYatayKaresiBul(feature);
-    }
-    else if(baslangic + artis*7 <= feature.geometry.coordinates[1] && feature.geometry.coordinates[1]< baslangic + artis*8)
-    {
-        DikeyKare = 0;
-        YatayKare = KöyNoktaYatayKaresiBul(feature);
-    }
-    else
-    {
-        DikeyKare = 8;
-    }
-
-    let Kareler = [DikeyKare,YatayKare];
-
-    return Kareler;
-}
-
-function KöyNoktaYatayKaresiBul(feature)
-{
-    let baslangic = batı_uç;
-    let artis = yatay_aralık;
-    let YatayKare;
-
-    if(baslangic <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis)
-    {
-        YatayKare = 0;
-    }
-    else if(baslangic + artis <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*2)
-    {
-        YatayKare = 1;
-    }
-    else if(baslangic + artis*2 <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*3)
-    {
-        YatayKare = 2;
-    }
-    else if(baslangic + artis*3 <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*4)
-    {
-        YatayKare = 3;
-    }
-    else if(baslangic + artis*4 <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*5)
-    {
-        YatayKare = 4;
-    }
-    else if(baslangic + artis*5 <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*6)
-    {
-        YatayKare = 5;
-    }
-    else if(baslangic + artis*6 <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*7)
-    {
-        YatayKare = 6;
-    }
-    else if(baslangic + artis*7 <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*8)
-    {
-        YatayKare = 7;
-    }
-    else if(baslangic + artis*8 <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*9)
-    {
-        YatayKare = 8;
-    }
-    else if(baslangic + artis*9 <= feature.geometry.coordinates[0] && feature.geometry.coordinates[0]< baslangic + artis*10)
-    {
-        YatayKare = 9;
-    }
-
-
-    return YatayKare;
-}
-
 async function NoktalarıÇek()
 {
     let url = "http://localhost:5130/Harita/NoktaAl";
@@ -332,8 +223,6 @@ async function NoktaEkle()
     let nokta = new Nokta(noktaGirdileri[2].value,noktaGirdileri[3].value,noktaGirdileri[4].value,
         noktaGirdileri[5].value,noktaGirdileri[0].value,noktaGirdileri[1].value,noktaGirdileri[6].value,
         noktaGirdileri[7].value,null);
-
-    console.log(JSON.stringify(nokta));
 
     let yanıt = await fetch(url, 
         {

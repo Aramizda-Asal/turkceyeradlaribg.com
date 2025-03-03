@@ -371,10 +371,8 @@ async function KÇ_KullanıcıAra(girdi, divID, inputID)
 
         let url = `http://localhost:5130/Kullanıcı/KullanıcıAra/${girdi}`;
         let yanıt = await fetch(url, {method: 'GET'});
-        console.log("fonksiyon");
         if(yanıt.status == 200)
         {
-            console.log("200");
             let yanıtJSON = await yanıt.json();
             let Kullanıcılar = JSON.parse(yanıtJSON);
             
@@ -405,7 +403,6 @@ async function KÇ_KullanıcıAra(girdi, divID, inputID)
         }
         else if(yanıt.status == 204)
         {
-            console.log("204");
             let button = document.createElement('div');
             button.innerText = "Kullanıcı yok.";
             button.className = "KullanıcıAraÇekmece-satır";
@@ -805,7 +802,6 @@ function KÇKullanıcıSilSayfası()
 async function KÇKullanıcıSil()
 {
     let silinecek_kullanıcı = document.getElementById("KullanıcıSil-Kullanıcı").value;
-    console.log(silinecek_kullanıcı);
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let oturum_kimliği = ÇerezDeğeri("OTURUM");
     let url = `http://localhost:5130/Kullanıcı/KullanıcıSil`;

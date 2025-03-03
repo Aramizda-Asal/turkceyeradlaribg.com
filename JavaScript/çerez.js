@@ -2,7 +2,6 @@ function ÇerezOluştur(ad, değer, son_tarih)
 {
     let expires = "expires=" + son_tarih.toUTCString() + "; ";
     document.cookie = ad + "=" + değer + "; " + expires + "path=/; SameSite=Strict;";
-    console.log(document.cookie);
 }
 
 function ÇerezSil(ad)
@@ -11,7 +10,6 @@ function ÇerezSil(ad)
     {
         let milat = new Date(0);
         document.cookie = `${ad}=; expires=${milat.toUTCString()}; path=/; SameSite=Strict;`;
-        console.log(document.cookie);
     }
 }
 
