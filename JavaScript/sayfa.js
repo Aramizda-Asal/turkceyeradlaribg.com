@@ -487,6 +487,7 @@ function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
 {   
     let araÇekmece = document.getElementById("ara-çekmece");//Div'lerin div'i. (Ana-div)
     araÇekmece.style.display = "block";
+    document.getElementById("başlıktaki-kapatıcı").style.display = "block";
 
     let aramaSonucuVar = false; 
 
@@ -549,6 +550,7 @@ function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
 function AraÇekmecesiniKapat()
 {
     document.getElementById("ara-çekmece").style.display = "none";
+    document.getElementById("başlıktaki-kapatıcı").style.display = "none";
 }
 
 /**
