@@ -332,14 +332,14 @@ async function KÇ_NoktaEkle_ÜstBölgeleriGetir()
         }
         );
         let option = document.createElement('option');
-        option.value = "yok";
+        option.value = "";
         option.text = "Üst bölgesi yok.";
         ÜstBölgeDropList.appendChild(option);
     }
     else if(yanıt.status == 204)
     {
         let option = document.createElement('option');
-        option.value = "yok";
+        option.value = "";
         option.text = "Üst bölgesi yok.";
         ÜstBölgeDropList.appendChild(option);
     }
@@ -727,7 +727,7 @@ async function KÇ_NoktaDuzenle_ÜstBölgeleriGetir(button)
         }
         );
         let option = document.createElement('option');
-        option.value = "yok";
+        option.value = "";
         option.text = "Üst bölgesi yok.";
         ÜstBölgeDropList.appendChild(option);
         const options = document.querySelectorAll('#NoktaDuzenle-ÜstBölge option');
@@ -743,7 +743,7 @@ async function KÇ_NoktaDuzenle_ÜstBölgeleriGetir(button)
     else if(yanıt.status == 204)
     {
         let option = document.createElement('option');
-        option.value = "yok";
+        option.value = "";
         option.text = "Üst bölgesi yok.";
         ÜstBölgeDropList.appendChild(option);
     }

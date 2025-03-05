@@ -15,7 +15,7 @@ class Nokta
     }
 }
 
-function NoktaOlusturucuGeoJSON(geoJSONNokta)
+function NoktaOluşturucuFeature(geoJSONNokta)
 {
     let nokta = new Nokta(geoJSONNokta.properties.BulgarcaLatin, geoJSONNokta.properties.BulgarcaKiril, geoJSONNokta.properties.Türkçe, 
                             geoJSONNokta.properties.Osmanlıca, geoJSONNokta.geometry.coordinates[1], geoJSONNokta.geometry.coordinates[0], 
@@ -43,6 +43,12 @@ class Feature
     }
 }
 
+function FeatureOluşturucuNokta(nokta)
+{
+    return new Feature(nokta.Bulgarca_Latin, nokta.Bulgarca_Kiril, nokta.Türkçe,
+        nokta.Osmanlıca, nokta.enlem, nokta.boylam, nokta.bölge_türü, nokta.üst_bölge, nokta.kimlik);
+}
+
 var NoktalarJSON = 
 {
     "type": "FeatureCollection",
@@ -68,7 +74,7 @@ async function NoktalarıBaşlat()
             else if (feature.properties.BolgeTuru === "Köy") 
             {
                 KöyKatmani.addLayer(layer);
-                let konumlar = KöyNoktaKaresiBul(feature);
+                let konumlar = KöyNoktaKaresiBul_Feature(feature);
                 KöyKatmanları[konumlar[0]][konumlar[1]].addLayer(layer);
             }
             else if (feature.properties.BolgeTuru === "Kasaba") 
@@ -93,11 +99,17 @@ const sütun_niceliği = 24;
 const yatay_aralık = (doğu_uç - batı_uç) / sütun_niceliği;
 
 
-function KöyNoktaKaresiBul(feature)
+function KöyNoktaKaresiBul_Feature(feature)
 {
-    let kareler = [satır_niceliği, sütun_niceliği]; // dikey, yatay
     let enlem = feature.geometry.coordinates[1];
     let boylam = feature.geometry.coordinates[0];
+
+    return KöyNoktaKaresiBul(enlem, boylam);
+}
+
+function KöyNoktaKaresiBul(enlem, boylam)
+{
+    let kareler = [satır_niceliği, sütun_niceliği]; // dikey, yatay
 
     for (let satır = 0; satır < satır_niceliği; satır++)
     {
@@ -142,12 +154,32 @@ async function NoktalarıÇek()
 
 async function NoktaÇekmecesiYarat(feature)
 {
+    let enlem;
+    let boylam;
+    if(feature.geometry.coordinates[1] instanceof Float32Array)
+    {
+        enlem = feature.geometry.coordinates[1].toFixed(6);
+    }
+    else
+    {
+        enlem = feature.geometry.coordinates[1]
+    }
+    if(feature.geometry.coordinates[0] instanceof Float32Array)
+    {
+        boylam = feature.geometry.coordinates[0].toFixed(6);
+    }
+    else
+    {
+        boylam = feature.geometry.coordinates[0]
+    }
+
     NoktaÇekmecesi();
     document.getElementById("nokta-büyükBaşlık").innerHTML = feature.properties.BulgarcaLatin;
     document.getElementById("nokta-altBaşlık").innerHTML = feature.properties.BulgarcaKiril;
     document.getElementById("nokta-dillerTR").innerHTML ="Türkçe: " + feature.properties.Türkçe;
     document.getElementById("nokta-dillerOS").innerHTML ="Osmanlıca: " + feature.properties.Osmanlıca;
-    document.getElementById("nokta-koordinat").innerHTML = feature.geometry.coordinates[1].toFixed(6) + ", " + feature.geometry.coordinates[0].toFixed(6);
+
+    document.getElementById("nokta-koordinat").innerHTML = enlem + ", " + boylam;
     let favori_butonu = document.getElementById("favori-butonu");
     if (favori_butonu !== null)
         favori_butonu.setAttribute("konum-kimliği", feature.properties.Kimlik);
@@ -182,8 +214,8 @@ async function NoktaÇekmecesiYarat(feature)
         FavoriButonuBosalt()
     }
 
-    document.getElementById("nokta-link").href = "https://www.google.com/maps/@" + feature.geometry.coordinates[1].toFixed(6) + 
-                                                    "," + feature.geometry.coordinates[0].toFixed(6) + ",13z?entry=ttu";
+    document.getElementById("nokta-link").href = "https://www.google.com/maps/@" + enlem + 
+                                                    "," + boylam + ",13z?entry=ttu";
 }
 
 function NoktaAra()
@@ -319,6 +351,7 @@ async function NoktaEkle()
     if(yanıt.status === 200)
     {
         KÇ_NoktaEkle_GirdileriBoşalt();
+        TooltipEkle(nokta);
         alert("Nokta Eklendi.")
     }
     else
@@ -385,7 +418,7 @@ async function DegisiklikleriKaydet(button)
 
     if(Degisti)
     {
-        let geri_nokta = NoktaOlusturucuGeoJSON(nokta);
+        let geri_nokta = NoktaOluşturucuFeature(nokta);
         let url = `http://localhost:5130/Harita/NoktaGüncelle`;  
         
         let yanıt = await fetch(url, 
@@ -401,7 +434,9 @@ async function DegisiklikleriKaydet(button)
             }); 
         if (yanıt.status === 200)
         {
-            currentTooltip.setTooltipContent(nokta.properties.Türkçe);
+            currentTooltip.remove();
+            let noktaTürü = NoktaOluşturucuFeature(nokta);
+            TooltipEkle(noktaTürü);
             alert("Degisti")
             NoktayaGit(geri_nokta.kimlik);
         }
@@ -411,4 +446,35 @@ async function DegisiklikleriKaydet(button)
         }
     }
 
+}
+
+function TooltipEkle(nokta)
+{
+    let feature = FeatureOluşturucuNokta(nokta);
+    console.log(feature);
+    let newMarker = L.marker([nokta.enlem, nokta.boylam]).bindTooltip(nokta.Türkçe, {permanent: true, direction: "top", className: "nokta-label"});
+    newMarker.on
+    ({
+        click: function()
+        {
+            NoktaÇekmecesiYarat(feature);
+        }
+    })
+
+    NoktalarJSON.features.push(feature);
+
+    if (nokta.bölge_türü === "İl") 
+    {
+        SehirKatmani.addLayer(newMarker);
+    }
+    else if (nokta.bölge_türü === "Köy") 
+    {
+        KöyKatmani.addLayer(newMarker);
+        let konumlar = KöyNoktaKaresiBul(nokta.enlem, nokta.boylam);
+        KöyKatmanları[konumlar[0]][konumlar[1]].addLayer(newMarker);
+    }
+    else if (nokta.bölge_türü === "Kasaba") 
+    {
+        KasabaKatmani.addLayer(newMarker);
+    }
 }
