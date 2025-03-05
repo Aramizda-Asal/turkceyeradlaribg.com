@@ -1,0 +1,19 @@
+body
+{
+    background-color: hsl(177, 69%, 95%);
+}
+
+.başlık-künye
+{
+    float: left;
+}
+
+.başlık-tanım
+{
+    display: block;
+    width: 46%;
+    margin: 0 10% 0 10%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
