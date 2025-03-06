@@ -59,6 +59,18 @@ body
     background-color: teal;
     z-index: -1;
 }
+.gövde
+{
+    height: 80vh;
+    width: 100vw;
+    margin: none;
+    padding: 0;
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    z-index: 40;
+    overflow: auto;
+}
 
 .kullanıcı-çekmece
 {

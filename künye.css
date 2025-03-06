@@ -17,3 +17,11 @@ body
     float: left;
     text-align: center;
 }
+
+.künye-içerik
+{
+    width: 75%;
+    margin: 2.5% auto;
+    
+    font-size: large;
+}
