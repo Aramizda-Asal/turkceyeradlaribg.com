@@ -6,7 +6,7 @@ function Kaydol()
     let Parola2 = document.getElementById("parola-kayıt-tekrar").value
     if(Parola1 === Parola2)
     {
-        let url = "http://localhost:5130/Kullanıcı/KullanıcıEkle/" + KullanıcıAdı + "/" + E_Posta + "/" + Parola1
+        let url = `${adres}Kullanıcı/KullanıcıEkle/${KullanıcıAdı}/${E_Posta}/${Parola1}`;
         fetch(url, {method: 'POST'})
             .then(response =>{
                 if(response.status === 201)
@@ -42,7 +42,7 @@ async function GirişYap()
     let kullanıcıAdı = encodeURIComponent(document.getElementById("kullanıcıadı-giriş").value);
     let parola = encodeURIComponent(document.getElementById("parola-giriş").value);
 
-    let url = `http://localhost:5130/Oturum/GirişYap/${kullanıcıAdı}/${parola}`;
+    let url = `${adres}Oturum/GirişYap/${kullanıcıAdı}/${parola}`;
     let yanıt = await fetch(url, {method: 'GET'});
 
     if (yanıt.status === 200)
@@ -71,7 +71,7 @@ async function ÇıkışYap()
         let kullanıcı_kimliği = encodeURIComponent(ÇerezDeğeri("KULLANICI"));
         let oturum_kimliği = encodeURIComponent(ÇerezDeğeri("OTURUM"));
 
-        let url = `http://localhost:5130/Oturum/OturumKapat/${oturum_kimliği}/${kullanıcı_kimliği}`;
+        let url = `${adres}Oturum/OturumKapat/${oturum_kimliği}/${kullanıcı_kimliği}`;
         let yanıt = await fetch(url, {method: 'POST'});
         if (yanıt.status === 200)
         {
@@ -88,7 +88,7 @@ async function OturumAçık()
     let kullanıcı_kimliği = encodeURIComponent(ÇerezDeğeri("KULLANICI"));
     let oturum_kimliği = encodeURIComponent(ÇerezDeğeri("OTURUM"));
 
-    let url = `http://localhost:5130/Oturum/OturumAçık/${oturum_kimliği}/${kullanıcı_kimliği}`;
+    let url = `${adres}Oturum/OturumAçık/${oturum_kimliği}/${kullanıcı_kimliği}`;
     let response = await fetch(url, {method: 'GET'});
     if (response.status === 200)
     {
@@ -216,7 +216,7 @@ async function KÇ_KullanıcıAra(girdi, divID, inputID)
         div.style.display = "block";
         girdi = encodeURIComponent(girdi);
 
-        let url = `http://localhost:5130/Kullanıcı/KullanıcıAra/${girdi}`;
+        let url = `${adres}Kullanıcı/KullanıcıAra/${girdi}`;
         let yanıt = await fetch(url, {method: 'GET'});
         if(yanıt.status == 200)
         {
@@ -286,19 +286,19 @@ async function RolAta()
     switch(rol)
     {
         case "Nokta Ekleyici":
-            url = `http://localhost:5130/Roller/RolVer_NoktaEkleyici/${RolAtanacak_Kullanıcı}`;
+            url = `${adres}Roller/RolVer_NoktaEkleyici/${RolAtanacak_Kullanıcı}`;
             break;
         case "Nokta Düzenleyici":
-            url = `http://localhost:5130/Roller/RolVer_NoktaDüzenleyici/${RolAtanacak_Kullanıcı}`;
+            url = `${adres}Roller/RolVer_NoktaDüzenleyici/${RolAtanacak_Kullanıcı}`;
             break;
         case "Nokta Silici":
-            url = `http://localhost:5130/Roller/RolVer_NoktaSilici/${RolAtanacak_Kullanıcı}`;
+            url = `${adres}Roller/RolVer_NoktaSilici/${RolAtanacak_Kullanıcı}`;
             break;
         case "Rol Atayıcı/Alıcı":
-            url = `http://localhost:5130/Roller/RolVer_RolAtayıcıAlıcı/${RolAtanacak_Kullanıcı}`;
+            url = `${adres}Roller/RolVer_RolAtayıcıAlıcı/${RolAtanacak_Kullanıcı}`;
             break;
         case "Kullanıcı Silici":
-            url = `http://localhost:5130/Roller/RolVer_KullanıcıSilici/${RolAtanacak_Kullanıcı}`;
+            url = `${adres}Roller/RolVer_KullanıcıSilici/${RolAtanacak_Kullanıcı}`;
             break;
     }
 
@@ -340,19 +340,19 @@ async function RolAl()
     switch(rol)
     {
         case "Nokta Ekleyici":
-            url = `http://localhost:5130/Roller/RolAl_NoktaEkleyici/${RolüAlınacak_Kullanıcı}`;
+            url = `${adres}Roller/RolAl_NoktaEkleyici/${RolüAlınacak_Kullanıcı}`;
             break;
         case "Nokta Düzenleyici":
-            url = `http://localhost:5130/Roller/RolAL_NoktaDüzenleyici/${RolüAlınacak_Kullanıcı}`;
+            url = `${adres}Roller/RolAL_NoktaDüzenleyici/${RolüAlınacak_Kullanıcı}`;
             break;
         case "Nokta Silici":
-            url = `http://localhost:5130/Roller/RolAl_NoktaSilici/${RolüAlınacak_Kullanıcı}`;
+            url = `${adres}Roller/RolAl_NoktaSilici/${RolüAlınacak_Kullanıcı}`;
             break;
         case "Rol Atayıcı/Alıcı":
-            url = `http://localhost:5130/Roller/RolAl_RolAtayıcıAlıcı/${RolüAlınacak_Kullanıcı}`;
+            url = `${adres}Roller/RolAl_RolAtayıcıAlıcı/${RolüAlınacak_Kullanıcı}`;
             break;
         case "Kullanıcı Silici":
-            url = `http://localhost:5130/Roller/RolAl_KullanıcıSilici/${RolüAlınacak_Kullanıcı}`;
+            url = `${adres}Roller/RolAl_KullanıcıSilici/${RolüAlınacak_Kullanıcı}`;
             break;
     }
 
@@ -381,7 +381,7 @@ async function KÇKullanıcıSil()
     let silinecek_kullanıcı = document.getElementById("KullanıcıSil-Kullanıcı").value;
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let oturum_kimliği = ÇerezDeğeri("OTURUM");
-    let url = `http://localhost:5130/Kullanıcı/KullanıcıSil`;
+    let url = `${adres}Kullanıcı/KullanıcıSil`;
     let yanıt = await fetch(url, 
         {
             method: 'DELETE',

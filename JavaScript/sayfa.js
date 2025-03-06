@@ -114,7 +114,7 @@ async function FavorilereEkle(button)
     let oturum_kimliği = ÇerezDeğeri("OTURUM");
     let konum_kimliği = button.getAttribute('konum-kimliği');
 
-    let url = `http://localhost:5130/Favori/FavoriEkle`;   
+    let url = `${adres}Favori/FavoriEkle`;   
 
     let yanıt = await fetch(url, 
         {
@@ -144,7 +144,7 @@ async function FavorilerdenCikar(button)
     let oturum_kimliği = ÇerezDeğeri("OTURUM");
     let konum_kimliği = button.getAttribute('konum-kimliği');
 
-    let url = `http://localhost:5130/Favori/FavorilerdenCikar`;
+    let url = `${adres}Favori/FavorilerdenCikar`;
     let yanıt = await fetch(url, 
         {
             method: 'DELETE',
@@ -292,7 +292,7 @@ async function KÇ_NoktaEkle_BölgeTürleriniGetir()
     let BölgeTürüDropList = document.getElementById("NoktaEkle-BölgeTürü");
     BölgeTürüDropList.innerHTML = "";
 
-    let url = `http://localhost:5130/Harita/GeçerliNoktaTürleri`;
+    let url = `${adres}Harita/GeçerliNoktaTürleri`;
     let yanıt = await fetch(url, {method: 'GET'});
 
     if(yanıt.status == 200)
@@ -324,7 +324,7 @@ async function KÇ_NoktaEkle_ÜstBölgeleriGetir()
     let BölgeTürü = document.getElementById("NoktaEkle-BölgeTürü").value;
     BölgeTürü = encodeURIComponent(BölgeTürü);
 
-    let url = `http://localhost:5130/Harita/ÜsteGelebilecekNoktalar/${BölgeTürü}/`;
+    let url = `${adres}Harita/ÜsteGelebilecekNoktalar/${BölgeTürü}/`;
     let yanıt = await fetch(url, {method: 'GET'});
 
     if(yanıt.status == 200)
@@ -392,7 +392,7 @@ async function KÇ_RolAta_RolleriGetir()
     let RollerDropList = document.getElementById("RolAta-Rol");
     RollerDropList.innerHTML = "";
 
-    let url = `http://localhost:5130/Roller/KullanıcınınRolleriDeğil`;
+    let url = `${adres}Roller/KullanıcınınRolleriDeğil`;
     let yanıt = await fetch(url, {
         method: 'GET',
         headers: 
@@ -454,7 +454,7 @@ async function KÇ_RolAL_RolleriGetir()
     let RollerDropList = document.getElementById("RolAl-Rol");
     RollerDropList.innerHTML = "";
 
-    let url = `http://localhost:5130/Roller/KullanıcınınRolleri`;
+    let url = `${adres}Roller/KullanıcınınRolleri`;
     let yanıt = await fetch(url, {
         method: 'GET',
         headers: 
@@ -583,7 +583,7 @@ async function KÇFavorilerSayfasınıDoldur()
 
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let oturum_kimliği = ÇerezDeğeri("OTURUM");
-    let url = `http://localhost:5130/Favori/FavorileriGöster`;
+    let url = `${adres}Favori/FavorileriGöster`;
     let yanıt = await fetch(url, 
         {
             method: 'GET',
@@ -682,7 +682,7 @@ async function KÇ_NoktaDuzenle_BölgeTürleriniGetir(bölge_türü)
     let BölgeTürüDropList = document.getElementById("NoktaDuzenle-BölgeTürü");
     BölgeTürüDropList.innerHTML = "";
 
-    let url = `http://localhost:5130/Harita/GeçerliNoktaTürleri`;
+    let url = `${adres}Harita/GeçerliNoktaTürleri`;
     let yanıt = await fetch(url, {method: 'GET'});
 
     if(yanıt.status == 200)
@@ -716,7 +716,7 @@ async function KÇ_NoktaDuzenle_ÜstBölgeleriGetir(button)
     let BölgeTürü = document.getElementById("NoktaDuzenle-BölgeTürü").value;
     BölgeTürü = encodeURIComponent(BölgeTürü);
 
-    let url = `http://localhost:5130/Harita/ÜsteGelebilecekNoktalar/${BölgeTürü}/`;
+    let url = `${adres}Harita/ÜsteGelebilecekNoktalar/${BölgeTürü}/`;
     let yanıt = await fetch(url, {method: 'GET'});
 
     if(yanıt.status == 200)

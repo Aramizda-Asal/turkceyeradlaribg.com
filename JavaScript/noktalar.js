@@ -138,7 +138,7 @@ function KöyNoktaKaresiBul(enlem, boylam)
 
 async function NoktalarıÇek()
 {
-    let url = "http://localhost:5130/Harita/NoktaAl";
+    let url = `${adres}Harita/NoktaAl`;
     
     let response =  await fetch(url, {method:"GET"});
 
@@ -193,7 +193,7 @@ async function NoktaÇekmecesiYarat(feature)
     if (nokta_kaydet_butonu !== null)
         nokta_kaydet_butonu.setAttribute("konum-kimliği", feature.properties.Kimlik);
 
-    let url = `http://localhost:5130/Favori/SatirVarMi`;   
+    let url = `${adres}Favori/SatirVarMi`;   
     let yanıt = await fetch(url, 
         {
             method: 'POST',
@@ -301,7 +301,7 @@ function NoktaAra()
 
 async function NoktaSil(button)
 {
-    let url = `http://localhost:5130/Harita/NoktaSil`;
+    let url = `${adres}Harita/NoktaSil`;
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let oturum_kimliği = ÇerezDeğeri("OTURUM");  
     let nokta_kimliği = button.getAttribute('konum-kimliği'); 
@@ -328,7 +328,7 @@ async function NoktaSil(button)
 
 async function NoktaEkle() 
 {
-    let url = `http://localhost:5130/Harita/NoktaEkle`;
+    let url = `${adres}Harita/NoktaEkle`;
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let oturum_kimliği = ÇerezDeğeri("OTURUM");  
 
@@ -419,7 +419,7 @@ async function DegisiklikleriKaydet(button)
     if(Degisti)
     {
         let geri_nokta = NoktaOluşturucuFeature(nokta);
-        let url = `http://localhost:5130/Harita/NoktaGüncelle`;  
+        let url = `${adres}Harita/NoktaGüncelle`;  
         
         let yanıt = await fetch(url, 
             {
