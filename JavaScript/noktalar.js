@@ -56,6 +56,42 @@ var NoktalarJSON =
 }
 
 let Noktalar = [];
+function NoktalarıTemizle()
+{
+    for (satır in KöyKatmanları)
+    {
+        for (sütun in KöyKatmanları[satır])
+        {
+            if (map.hasLayer(KöyKatmanları[satır][sütun]))
+            {
+                map.removeLayer(KöyKatmanları[satır][sütun]);
+            }
+        }
+    }
+
+    if (map.hasLayer(KasabaKatmani))
+    {
+        map.removeLayer(KasabaKatmani);
+    }
+    if(map.hasLayer(SehirKatmani))
+    {
+        map.removeLayer(SehirKatmani);
+    }
+
+    Noktalar = [];
+    SehirKatmani = L.layerGroup();
+    KöyKatmani = L.layerGroup();
+    KasabaKatmani = L.layerGroup();
+    KöyKatmanları = [];
+    for (let satır = 0; satır < satır_niceliği; satır++)
+    {
+        KöyKatmanları[satır] = [];
+        for (let sütun = 0; sütun < sütun_niceliği; sütun++)
+        {
+            KöyKatmanları[satır][sütun] = L.layerGroup();
+        }
+    }
+}
 
 async function NoktalarıBaşlat()
 {
@@ -351,7 +387,8 @@ async function NoktaEkle()
     if(yanıt.status === 200)
     {
         KÇ_NoktaEkle_GirdileriBoşalt();
-        TooltipEkle(nokta);
+        NoktalarıTemizle();
+        NoktalarıBaşlat();
         alert("Nokta Eklendi.")
     }
     else
@@ -434,9 +471,8 @@ async function DegisiklikleriKaydet(button)
             }); 
         if (yanıt.status === 200)
         {
-            currentTooltip.remove();
-            let noktaTürü = NoktaOluşturucuFeature(nokta);
-            TooltipEkle(noktaTürü);
+            NoktalarıTemizle();
+            NoktalarıBaşlat();
             alert("Nokta Bilgileri Değiştirildi.");
             NoktayaGit(geri_nokta.kimlik);
         }
@@ -446,36 +482,4 @@ async function DegisiklikleriKaydet(button)
         }
     }
 
-}
-
-function TooltipEkle(nokta)
-{
-    let feature = FeatureOluşturucuNokta(nokta);
-    console.log(feature);
-    let newMarker = L.marker([nokta.enlem, nokta.boylam]).bindTooltip(nokta.Türkçe, {permanent: true, direction: "top", className: "nokta-label"});
-    newMarker.on
-    ({
-        click: function()
-        {
-            NoktaÇekmecesiYarat(feature);
-            currentTooltip = newMarker;
-        }
-    })
-
-    NoktalarJSON.features.push(feature);
-
-    if (nokta.bölge_türü === "İl") 
-    {
-        SehirKatmani.addLayer(newMarker);
-    }
-    else if (nokta.bölge_türü === "Köy") 
-    {
-        KöyKatmani.addLayer(newMarker);
-        let konumlar = KöyNoktaKaresiBul(nokta.enlem, nokta.boylam);
-        KöyKatmanları[konumlar[0]][konumlar[1]].addLayer(newMarker);
-    }
-    else if (nokta.bölge_türü === "Kasaba") 
-    {
-        KasabaKatmani.addLayer(newMarker);
-    }
 }

@@ -8,8 +8,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-let currentTooltip; 
-
 //Haritadaki noktalara tıklandığında noktalar ile ilgili bilgileri gösteren çekmeceyi açan fonksiyon.
 function MarkerClickFeature(feature, layer) 
 {
@@ -23,13 +21,6 @@ function MarkerClickFeature(feature, layer)
 
     let tooltip = layer.bindTooltip(feature.properties.Türkçe, {permanent: true, direction: "top", className: "nokta-label"});
     tooltip.openTooltip();
-    tooltip.on
-    ({
-        click: function()
-        {
-            currentTooltip = tooltip;
-        }
-    })
 }
 
 let SehirKatmani = L.layerGroup();
