@@ -19,7 +19,7 @@ function MarkerClickFeature(feature, layer)
     ({
         click: async function()
         {
-            NoktaÇekmecesiYarat(feature);
+            NoktayaGit(feature.properties.Kimlik);
         }
     });
 
@@ -233,15 +233,15 @@ function NoktayaGit(Nokta_Kimliği)
     let zoom
     if(nokta.properties.BolgeTuru === "İl")
     {
-        zoom = 10
+        zoom = 11
     }
     else if(nokta.properties.BolgeTuru === "İlçe")
     {
-        zoom = 11
+        zoom = 12
     }
     else
     {
-        zoom = 14
+        zoom = 15
     }
     map.setView([nokta.geometry.coordinates[1],nokta.geometry.coordinates[0]],zoom);
     
