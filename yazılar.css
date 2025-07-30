@@ -56,6 +56,15 @@
     margin: 2vh 0 2vh;
 }
 
+.nokta-temel-bilgiler
+{
+    text-align: justify;
+    max-height: 24vh;
+    overflow-y: auto;
+    margin: 2vh 2vh 2vh;
+}
+
+
 .nokta-link
 {
     width: 91%;

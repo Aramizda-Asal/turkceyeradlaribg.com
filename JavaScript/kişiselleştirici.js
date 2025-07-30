@@ -77,6 +77,8 @@ async function AnonimdenKişisele()
 
     FavoriButonuYarat();
 
+    BizeUlasinButonunuYarat();
+
     await RoleGöreÖgeleriYarat();
 
     KÇAnaSayfa();
@@ -91,6 +93,8 @@ async function KişiseldenAnonime()
     KÇAnaSayfa();
     
     FavoriButonuYokEt();
+
+    BizeUlasinButonunuYokEt();
 
     await RoleGöreÖgeleriYokEt();
 
@@ -315,5 +319,35 @@ function FavoriButonuYokEt()
     if(document.getElementById("favori-butonu") != null)
     {
         document.getElementById("favori-butonu").remove();
+    }
+}
+
+function BizeUlasinButonunuYarat()
+{
+    let div = document.getElementById('nokta-çekmece-içalt');
+
+    let button = document.createElement('button');
+    button.className = "D1-turkuaz butonlar-profil";
+    button.id = "bize-ulasin-butonu";
+    button.konum_kimliği = "";
+    button.innerHTML = "Bize Ulaşın"
+
+    button.onclick = function () 
+    {
+        
+    };
+
+    let GoogleHaritalarDüğmesi = document.getElementById("nokta-link");
+    if (GoogleHaritalarDüğmesi !== null)
+        div.insertBefore(button, GoogleHaritalarDüğmesi);
+    else
+        div.appendChild(button);
+}
+
+function BizeUlasinButonunuYokEt()
+{
+    if(document.getElementById("bize-ulasin-butonu") != null)
+    {
+        document.getElementById("bize-ulasin-butonu").remove();
     }
 }
