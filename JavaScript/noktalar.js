@@ -1,7 +1,7 @@
 class Nokta
 {
     constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca,
-                enlem, boylam, bölge_türü, üst_bölge, kimlik)
+                enlem, boylam, bölge_türü, üst_bölge, kimlik, aciklama)
     {
         this.Bulgarca_Latin = Bulgarca_Latin;
         this.Bulgarca_Kiril = Bulgarca_Kiril;
@@ -12,6 +12,7 @@ class Nokta
         this.bölge_türü = bölge_türü;
         this.üst_bölge = üst_bölge;
         this.kimlik = kimlik;
+        this.aciklama = aciklama;
     }
 }
 
@@ -19,14 +20,14 @@ function NoktaOluşturucuFeature(geoJSONNokta)
 {
     let nokta = new Nokta(geoJSONNokta.properties.BulgarcaLatin, geoJSONNokta.properties.BulgarcaKiril, geoJSONNokta.properties.Türkçe, 
                             geoJSONNokta.properties.Osmanlıca, geoJSONNokta.geometry.coordinates[1], geoJSONNokta.geometry.coordinates[0], 
-                            geoJSONNokta.properties.BolgeTuru, geoJSONNokta.properties.UstBolge, geoJSONNokta.properties.Kimlik)
+                            geoJSONNokta.properties.BolgeTuru, geoJSONNokta.properties.UstBolge, geoJSONNokta.properties.Kimlik, geoJSONNokta.properties.Aciklama)
     
     return nokta;
 }
 
 class Feature
 {
-    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca, enlem, boylam, bolge_turu, ust_bolge, kimlik)
+    constructor(Bulgarca_Latin, Bulgarca_Kiril, Türkçe, Osmanlıca, enlem, boylam, bolge_turu, ust_bolge, kimlik, aciklama)
     {
         this.type = "Feature";
         this.properties = {};
@@ -37,6 +38,7 @@ class Feature
         this.properties["BolgeTuru"] = bolge_turu;
         this.properties["UstBolge"] = ust_bolge;
         this.properties["Kimlik"] = kimlik;
+        this.properties["Aciklama"] = aciklama
         this.geometry = {};
         this.geometry["type"] = "Point";
         this.geometry["coordinates"] = [boylam, enlem];
@@ -46,7 +48,7 @@ class Feature
 function FeatureOluşturucuNokta(nokta)
 {
     return new Feature(nokta.Bulgarca_Latin, nokta.Bulgarca_Kiril, nokta.Türkçe,
-        nokta.Osmanlıca, nokta.enlem, nokta.boylam, nokta.bölge_türü, nokta.üst_bölge, nokta.kimlik);
+        nokta.Osmanlıca, nokta.enlem, nokta.boylam, nokta.bölge_türü, nokta.üst_bölge, nokta.kimlik, nokta.aciklama);
 }
 
 var NoktalarJSON = 
@@ -183,12 +185,13 @@ async function NoktalarıÇek()
     let response =  await fetch(url, {method:"GET"});
 
     let responsejs = await response.json();
+    console.log(responsejs)
 
     for(let i = 0; i<responsejs.length; i++)
     {
         let enlem = parseFloat(responsejs[i][0]);
         let boylam = parseFloat(responsejs[i][1]);
-        Noktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam, responsejs[i][6], responsejs[i][7], responsejs[i][8]));
+        Noktalar.push(new Feature(responsejs[i][2], responsejs[i][3], responsejs[i][4], responsejs[i][5], enlem, boylam, responsejs[i][6], responsejs[i][7], responsejs[i][8], responsejs[i][9]));
     }
 }
 
@@ -218,6 +221,16 @@ async function NoktaÇekmecesiYarat(feature)
     document.getElementById("nokta-altBaşlık").innerHTML = feature.properties.BulgarcaKiril;
     document.getElementById("nokta-dillerTR").innerHTML ="Türkçe: " + feature.properties.Türkçe;
     document.getElementById("nokta-dillerOS").innerHTML ="Osmanlıca: " + feature.properties.Osmanlıca;
+    console.log(feature.properties.Aciklama);
+    if(feature.properties.Aciklama === "")
+    {
+        document.getElementById("nokta-temel-bilgiler").innerHTML = "Bilgi Bulunmamaktadır";
+    }
+    else
+    {
+        document.getElementById("nokta-temel-bilgiler").innerHTML = feature.properties.Aciklama;
+    }
+    
 
     document.getElementById("nokta-koordinat").innerHTML = enlem + ", " + boylam;
     let favori_butonu = document.getElementById("favori-butonu");
@@ -375,7 +388,7 @@ async function NoktaEkle()
     let noktaGirdileri = document.getElementsByClassName("NoktaEkle-Girdiler");
     let nokta = new Nokta(noktaGirdileri[2].value,noktaGirdileri[3].value,noktaGirdileri[4].value,
         noktaGirdileri[5].value,noktaGirdileri[0].value,noktaGirdileri[1].value,noktaGirdileri[6].value,
-        noktaGirdileri[7].value,null);
+        noktaGirdileri[7].value,null, null);
 
     let yanıt = await fetch(url, 
         {
