@@ -263,6 +263,8 @@ async function RoleGöreÖgeleriYarat()
             `<input type="text" id="NoktaDuzenle-Türkçeİsim" value=""/>\n` +
             `<label for="NoktaDuzenle-Osmanlıcaİsim" form="Form-NoktaDuzenle">Osmanlıca İsmi:</label>\n` +
             `<input type="text" id="NoktaDuzenle-Osmanlıcaİsim" value=""/>\n` +
+            `<label for="NoktaDuzenle-Temel-Bilgiler" form="Form-NoktaDuzenle">Temel Bilgiler:</label>\n` +
+            `<input type="text" id="NoktaDuzenle-Temel-Bilgiler" value=""/>\n` +
             `<label for="NoktaDuzenle-BölgeTürü" form="Form-NoktaDuzenle">Bölgenin Türü:</label>` +
             `<select name="" id="NoktaDuzenle-BölgeTürü" onchange="KÇ_NoktaDuzenle_ÜstBölgeleriGetir(this)" class="NoktaDuzenle-Girdiler" konum-kimliği=""></select>` +
             `<label for="NoktaDuzenle-ÜstBölge" form="Form-NoktaDuzenle">Üst Bölgesi:</label>` +

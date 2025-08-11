@@ -658,6 +658,7 @@ async function NoktaDuzenleSayfası(button)
     document.getElementById("NoktaDuzenle-BulgarcaKirilİsim").value = nokta.properties.BulgarcaKiril;
     document.getElementById("NoktaDuzenle-Türkçeİsim").value = nokta.properties.Türkçe;
     document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value = nokta.properties.Osmanlıca;
+    document.getElementById("NoktaDuzenle-Temel-Bilgiler").value = nokta.properties.Aciklama;
     document.getElementById("NoktaDuzenle-BölgeTürü").setAttribute("konum-kimliği", nokta.properties.UstBolge);
     document.getElementById("nokta-penceresi").style.display = "none";
     document.getElementById("noktayı-duzenle-penceresi").style.display = "block";

@@ -458,6 +458,11 @@ async function DegisiklikleriKaydet(button)
         nokta.properties.Osmanlıca = document.getElementById("NoktaDuzenle-Osmanlıcaİsim").value;
         Degisti = true;
     }
+    if(nokta.properties.Aciklama != document.getElementById("NoktaDuzenle-Temel-Bilgiler").value)
+    {
+        nokta.properties.Aciklama = document.getElementById("NoktaDuzenle-Temel-Bilgiler").value
+        Degisti = true;
+    }
     if(nokta.properties.BolgeTuru != document.getElementById("NoktaDuzenle-BölgeTürü").value)
     {
         nokta.properties.BolgeTuru = document.getElementById("NoktaDuzenle-BölgeTürü").value;
