@@ -94,7 +94,8 @@
     display: block;
 }
 
-.çekmece-içi input[type="text"], .çekmece-içi input[type="password"], .çekmece-içi input[type="number"], .çekmece-içi select
+.çekmece-içi input[type="text"], .çekmece-içi input[type="password"], .çekmece-içi input[type="number"], 
+.çekmece-içi select, .çekmece-içi textarea
 {
     font-size: medium;
     font-weight: bold;
@@ -113,11 +114,15 @@
     margin: 0% auto 4%;
 }
 
-#nokta-çekmecesi input, #nokta-çekmecesi select
+#nokta-çekmecesi input, #nokta-çekmecesi select, #nokta-çekmecesi textarea
 {
     margin: 0% auto 4%;
 }
 
+#NoktaDuzenle-Temel-Bilgiler
+{
+    height: 10vh;
+}
 .giriş-düğmesi
 {
     display: block;
