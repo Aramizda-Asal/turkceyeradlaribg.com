@@ -148,6 +148,10 @@ map.on (
                 {
                     map.removeLayer(SehirKatmani);
                 }
+                if (map.hasLayer(İlçeKatmanı))
+                {
+                    map.removeLayer(İlçeKatmanı);
+                }
                 if (!map.hasLayer(KasabaKatmani))
                 {
                     map.addLayer(KasabaKatmani);
