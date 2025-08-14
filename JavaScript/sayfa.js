@@ -508,7 +508,7 @@ function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
         {
             let button = document.createElement('div');
             button.className = "ara-çekmece-satır";
-            button.innerText = ilkİçeren.Ad;
+            button.innerHTML = `${ilkİçeren.Ad}<span style="color:red"> / ${ilkİçeren.Tür}</span>`;
             button.onclick = function ()
             {
                 NoktayaGit(ilkİçeren.Kimlik);
@@ -524,7 +524,7 @@ function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
         {
             let button = document.createElement('div');
             button.className = "ara-çekmece-satır";
-            button.innerText = Ortaİçeren.Ad;
+            button.innerHTML = `${Ortaİçeren.Ad}<span style="color:red"> / ${Ortaİçeren.Tür}</span>`;
             button.onclick = function ()
             {
                 NoktayaGit(Ortaİçeren.Kimlik);
@@ -540,7 +540,7 @@ function AraÇekmecesiniAç(ilkİçerenler, Ortaİçerenler, sonİçerenler)
         {
             let button = document.createElement('div');
             button.className = "ara-çekmece-satır";
-            button.innerText = sonİçeren.Ad;
+            button.innerHTML = `${sonİçeren.Ad}<span style="color:red"> / ${sonİçeren.Tür}</span>`;
             button.onclick = function ()
             {
                 NoktayaGit(sonİçeren.Kimlik);

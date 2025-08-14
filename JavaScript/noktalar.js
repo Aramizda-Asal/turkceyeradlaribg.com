@@ -274,6 +274,13 @@ async function NoktaÇekmecesiYarat(feature)
                                                     "," + boylam + ",13z?entry=ttu";
 }
 
+const dilConfig = 
+{
+    "Bulgarca-Latin": { prop: "BulgarcaLatin", suffixMap: { "İl": "Grad", "İlçe": "Obshtina", "Köy": "Selo", "Kasaba": "Kasaba-Bulgarca" } },
+    "Bulgarca-Kiril": { prop: "BulgarcaKiril", suffixMap: { "İl": "град", "İlçe": " община", "Köy": "село", "Kasaba": "Kasaba-BulgarcaK" } },
+    "Osmanlıca":      { prop: "Osmanlıca",     suffixMap: { "İl": "İl-Osmanlıca", "İlçe": "İlçe-Osmanlıca", "Köy": "Köy-Osmanlıca", "Kasaba": "Kasaba-Osmanlıca" } }
+};
+
 function NoktaAra()
 {
     let YazılanŞey = document.getElementById("aramaÇubuğu").value
@@ -297,6 +304,7 @@ function NoktaAra()
                     let noktaDict = new Object();
                     noktaDict["Kimlik"] = NoktalarJSON.features[i].properties.Kimlik
                     noktaDict["Ad"] = NoktalarJSON.features[i].properties.BulgarcaLatin
+                    noktaDict["Tür"] = dilConfig[SecilenDil].suffixMap[NoktalarJSON.features[i].properties.BolgeTuru];
                     İçerenler.push(noktaDict);
                 }
             }
@@ -307,6 +315,7 @@ function NoktaAra()
                     let noktaDict = new Object();
                     noktaDict["Kimlik"] = NoktalarJSON.features[i].properties.Kimlik
                     noktaDict["Ad"] = NoktalarJSON.features[i].properties.BulgarcaKiril
+                    noktaDict["Tür"] = dilConfig[SecilenDil].suffixMap[NoktalarJSON.features[i].properties.BolgeTuru];
                     İçerenler.push(noktaDict);
                 }
             }
@@ -317,6 +326,7 @@ function NoktaAra()
                     let noktaDict = new Object();
                     noktaDict["Kimlik"] = NoktalarJSON.features[i].properties.Kimlik
                     noktaDict["Ad"] = NoktalarJSON.features[i].properties.Türkçe
+                    noktaDict["Tür"] = NoktalarJSON.features[i].properties.BolgeTuru;
                     İçerenler.push(noktaDict);
                 }
             }
@@ -327,6 +337,7 @@ function NoktaAra()
                     let noktaDict = new Object();
                     noktaDict["Kimlik"] = NoktalarJSON.features[i].properties.Kimlik
                     noktaDict["Ad"] = NoktalarJSON.features[i].properties.Osmanlıca
+                    noktaDict["Tür"] = dilConfig[SecilenDil].suffixMap[NoktalarJSON.features[i].properties.BolgeTuru];
                     İçerenler.push(noktaDict);
                 }
             }
