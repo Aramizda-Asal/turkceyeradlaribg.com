@@ -138,6 +138,9 @@ body
     position: absolute;
     bottom: 0;
     left: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
 }
 
 .düzenle

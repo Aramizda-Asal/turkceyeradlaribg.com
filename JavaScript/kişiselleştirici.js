@@ -59,21 +59,19 @@ async function AnonimdenKişisele()
     let anonim_bölgeler = document.getElementsByClassName("anonim-bölge");
     let kişisel_bölgeler = document.getElementsByClassName("kişisel-bölge");
 
-    if (anonim_bölgeler.length >= 1)
+    for (let ab of anonim_bölgeler)
     {
-        for (let i = 0; i < anonim_bölgeler.length; i++)
-        {
-            anonim_bölgeler[i].style.display = "none";
-        }
+        ab.style.display = "none";
     }
 
-    if (kişisel_bölgeler.length >= 1)
+    for (let kb of kişisel_bölgeler)
     {
-        for (let i = 0; i < kişisel_bölgeler.length; i++)
-        {
-            kişisel_bölgeler[i].style.display = "block";
-        }
+        if (kb.classList.contains("çekmece-içalt"))
+            kb.style.display = "flex";
+        else
+            kb.style.display = "block";
     }
+
 
     FavoriButonuYarat();
 
@@ -101,20 +99,17 @@ async function KişiseldenAnonime()
     let anonim_bölgeler = document.getElementsByClassName("anonim-bölge");
     let kişisel_bölgeler = document.getElementsByClassName("kişisel-bölge");
     
-    if (kişisel_bölgeler.length >= 1)
+    for (let kb of kişisel_bölgeler)
     {
-        for (let i = 0; i < kişisel_bölgeler.length; i++)
-        {
-            kişisel_bölgeler[i].style.display = "none";
-        }
+        kb.style.display = "none";
     }
 
-    if (anonim_bölgeler.length >= 1)
+    for (let ab of anonim_bölgeler)
     {
-        for (let i = 0; i < anonim_bölgeler.length; i++)
-        {
-            anonim_bölgeler[i].style.display = "block";
-        }
+        if (ab.classList.contains("çekmece-içalt"))
+            ab.style.display = "flex";
+        else
+            ab.style.display = "block";
     }
 }
 
