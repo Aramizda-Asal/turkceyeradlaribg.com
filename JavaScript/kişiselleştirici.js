@@ -245,7 +245,7 @@ async function RoleGöreÖgeleriYarat()
 
         let iç = `<div class="çekmece-içorta duzenle">\n` +
             `<form id="Form-NoktaDuzenle" class="form-ortalı içi-bloklu">\n` +
-            `<h2>Nokta Ekle</h2>\n` +
+            `<h2>Nokta Düzenle</h2>\n` +
             `<label for="NoktaDuzenle-EnlemDerece" form="Form-NoktaDuzenle">Enlemi (Derece):</label>\n` +
             `<input type="number" id="NoktaDuzenle-EnlemDerece" value=""/>\n` +
             `<label for="NoktaDuzenle-BoylamDerece" form="Form-NoktaDuzenle">Boylamı (Derece):</label>\n` +
