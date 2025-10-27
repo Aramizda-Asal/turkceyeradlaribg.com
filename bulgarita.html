@@ -69,6 +69,7 @@
             <div class="çekmece-içi">
             <div class="çekmece-içorta">
 
+                <div class="D1-kızıl" id="çekmeceKapatmaDüğme" onclick="KullanıcıÇekmecesiniKapat();NoktaÇekmecesiniKapat()">X</div>
                 <h4 id="kullanıcı-çekmecesi-başlık" class="Başlık2">Giriş Yap</h4>
 
                 <div id="kullanıcı-çekmecesi-anonim" class="anonim-bölge" style="display: block;">
@@ -173,6 +174,8 @@
                             <input type="text" id="NoktaEkle-Türkçeİsim" class="NoktaEkle-Girdiler">
                             <label for="NoktaEkle-Osmanlıcaİsim" form="Form-NoktaEkle">Osmanlıca İsmi:</label>
                             <input type="text" id="NoktaEkle-Osmanlıcaİsim" class="NoktaEkle-Girdiler">
+                            <label for="NoktaEkle-Temel-Bilgiler" form="Form-NoktaEkle">Temel Bilgiler:</label>
+                            <textarea id="NoktaEkle-Temel-Bilgiler" class="NoktaEkle-Girdiler" value=""></textarea>
                             <label for="NoktaEkle-BölgeTürü" form="Form-NoktaEkle">Bölgenin Türü:</label>
                             <select name="" id="NoktaEkle-BölgeTürü" onchange="KÇ_NoktaEkle_ÜstBölgeleriGetir()" class="NoktaEkle-Girdiler"></select>
                             <label for="NoktaEkle-ÜstBölge" form="Form-NoktaEkle">Üst Bölgesi:</label>
@@ -241,6 +244,7 @@
         <div id="nokta-çekmecesi" class="nokta-çekmece"> 
             <div class="çekmece-içi" id="nokta-penceresi">
                 <div class="çekmece-içorta" id="nokta-penceresi-içorta">
+                    <div class="D1-kızıl" id="çekmeceKapatmaDüğme" onclick="KullanıcıÇekmecesiniKapat();NoktaÇekmecesiniKapat()">X</div>
                     <div class="nokta-başlıklar">
                         <div class="nokta-büyükBaşlık" id="nokta-büyükBaşlık"></div>
                         <div class="nokta-altBaşlık" id="nokta-altBaşlık"></div>

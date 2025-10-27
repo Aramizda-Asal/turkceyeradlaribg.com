@@ -404,10 +404,12 @@ async function NoktaEkle()
     let kullanıcı_kimliği = ÇerezDeğeri("KULLANICI");
     let oturum_kimliği = ÇerezDeğeri("OTURUM");  
 
+    
     let noktaGirdileri = document.getElementsByClassName("NoktaEkle-Girdiler");
+    console.log(noktaGirdileri[6].value);
     let nokta = new Nokta(noktaGirdileri[2].value,noktaGirdileri[3].value,noktaGirdileri[4].value,
-        noktaGirdileri[5].value,noktaGirdileri[0].value,noktaGirdileri[1].value,noktaGirdileri[6].value,
-        noktaGirdileri[7].value,null, null);
+        noktaGirdileri[5].value,noktaGirdileri[0].value,noktaGirdileri[1].value,noktaGirdileri[7].value,
+        noktaGirdileri[8].value,null, noktaGirdileri[6].value);
 
     let yanıt = await fetch(url, 
         {

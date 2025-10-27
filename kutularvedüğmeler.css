@@ -110,9 +110,18 @@
     border-bottom-color: #158479aa;
 }
 
-#kullanıcı-çekmecesi input, #kullanıcı-çekmecesi select
+#kullanıcı-çekmecesi input, #kullanıcı-çekmecesi select, #kullanıcı-çekmecesi textarea
 {
     margin: 0% auto 4%;
+}
+
+#kullanıcı-çekmecesi .çekmece-içi .çekmece-içorta
+{
+    width: 100%;
+    height: 90%;
+    position: relative;
+    overflow-y: auto;
+    z-index: 20;
 }
 
 #nokta-çekmecesi input, #nokta-çekmecesi select, #nokta-çekmecesi textarea
@@ -120,7 +129,7 @@
     margin: 0% auto 4%;
 }
 
-#NoktaDuzenle-Temel-Bilgiler
+#NoktaDuzenle-Temel-Bilgiler, #NoktaEkle-Temel-Bilgiler
 {
     height: 10vh;
     width: 15vw;
@@ -276,4 +285,26 @@
     position: absolute;
     bottom: 0;
     left: 60vh;
+}
+
+#çekmeceKapatmaDüğme
+{
+    position: relative;
+    float: right;
+}
+
+@media (orientation:landscape)
+{
+    #çekmeceKapatmaDüğme
+    {
+        display: none;
+    }
+}
+
+@media (orientation:portrait)
+{
+    #çekmeceKapatmaDüğme
+    {
+        display: block;
+    }
 }
