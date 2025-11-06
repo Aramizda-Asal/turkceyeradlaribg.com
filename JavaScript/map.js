@@ -1,3 +1,5 @@
+// @license magnet:?xt=urn:btih:0b31508aeb0634b347b8270c7bee4d411b5d4109&dn=agpl-3.0.txt AGPL-3.0
+// Copyright (C) 2025 Habil Tataroğulları, Güneş Balcı, Yusuf Kozan
 var map = L.map('map', { zoomControl: false});//.setView([42.2000008,24.3330002], 8);
 map.fitBounds([
     [kuzey_uç, batı_uç],
@@ -273,3 +275,4 @@ function NoktayaGit_KÇKapatma(Nokta_Kimliği)
     }
     map.setView([nokta.geometry.coordinates[1],nokta.geometry.coordinates[0]],zoom);
 }
+// @license-end
