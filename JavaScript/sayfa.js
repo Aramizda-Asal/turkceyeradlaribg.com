@@ -6,7 +6,7 @@ function KünyeyeGit()
 }
 function HaritayaGit()
 {
-    window.location.assign("bulgarita.html");
+    window.location.assign("index.html");
 }
 
 let kullanıcı_çekmecesi_açık = false;
